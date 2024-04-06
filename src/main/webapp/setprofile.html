@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>set your profile</title>
+</head>
+<body>
+    <h1>Profile</h1>
+        <form action="profile" method="POST"> 
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+ 
+            <label for="hobby">Hobby:</label>
+            <input type="text" id="hobby" name="hobby"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+</body>
+</html>
+
+<!--    /profile(http://localhost:8080/profile); shoppingcart/profile(http://localhost:8080/shoppingcart/shoppingcart/profile)"  都不行-->
+<!--    profile（相对地址， 相对于http://localhost:8080/shoppingcart）; /shoppingcart/profile"(前面放/是绝对地址，http://localhost:8080)  都行-->
