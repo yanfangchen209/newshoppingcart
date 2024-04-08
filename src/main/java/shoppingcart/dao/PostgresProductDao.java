@@ -17,9 +17,9 @@ public class PostgresProductDao implements ProductDao{
 	private static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM products WHERE id=?";
 	private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM products";
 	private static final String DELETE_PRODUCT_BY_ID = "DELETE FROM products WHERE id = ?";
-	private static final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, category = ?, price = ?, quantity = ? WHERE id = ?";
+	private static final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, brand = ?, description = ?, category = ?, price = ?, quantity = ? WHERE id = ?";
 	private static final String SELECT_PRODUCT_BY_NAME = "SELECT * FROM products WHERE productName=?";
-	private static final String ADD_PRODUCT = "INSERT INTO products(productName, category, price, quantity) VALUES (?, ?, ?, ?)";
+	private static final String ADD_PRODUCT = "INSERT INTO products(productName, brand, description, category, price, quantity) VALUES (?, ?, ?, ?, ?, ?)";
 
 	@Override
 	public boolean addProduct(Product product) {
@@ -29,10 +29,11 @@ public class PostgresProductDao implements ProductDao{
 						){
 			
 			statement.setString(1, product.getProductName());
-			statement.setString(2, product.getCategory());
-			statement.setDouble(3, product.getPrice());
-			
-			statement.setInt(4, product.getQuantity());
+			statement.setString(2, product.getBrand());
+			statement.setString(3, product.getDescription());
+			statement.setString(4, product.getCategory());
+			statement.setDouble(5, product.getPrice());
+			statement.setInt(6, product.getQuantity());
 			
 			int rows_affacted = statement.executeUpdate();
 			boolean addResult = false;
@@ -60,6 +61,8 @@ public class PostgresProductDao implements ProductDao{
 				Product product = new Product(
 						resultSet.getLong("id"), 
 						resultSet.getString("productName"), 
+						resultSet.getString("brand"), 
+						resultSet.getString("description"), 
 						resultSet.getString("category"), 
 						resultSet.getDouble("price"), 
 						resultSet.getInt("quantity"));
@@ -88,6 +91,8 @@ public class PostgresProductDao implements ProductDao{
 				product = new Product(
 						resultSet.getLong("id"), 
 						resultSet.getString("productName"), 
+						resultSet.getString("brand"),
+						resultSet.getString("description"),
 						resultSet.getString("category"), 
 						resultSet.getDouble("price"),
 						resultSet.getInt("quantity")
@@ -116,6 +121,8 @@ public class PostgresProductDao implements ProductDao{
 					result = new Product(
 							resultSet.getLong("id"),
 							resultSet.getString("productName"), 
+							resultSet.getString("brand"),
+							resultSet.getString("description"),
 							resultSet.getString("category"), 
 							resultSet.getDouble("price"), 
 							resultSet.getInt("quantity")
@@ -142,10 +149,12 @@ public class PostgresProductDao implements ProductDao{
 			
 
 			statement.setString(1, product.getProductName());
-			statement.setString(2, product.getCategory());
-			statement.setDouble(3, product.getPrice());
-			statement.setInt(4, product.getQuantity());
-			statement.setLong(5, product.getId());
+			statement.setString(2, product.getBrand());
+			statement.setString(3, product.getDescription());
+			statement.setString(4, product.getCategory());
+			statement.setDouble(5, product.getPrice());
+			statement.setInt(6, product.getQuantity());
+			statement.setLong(7, product.getId());
 			
 			int rows_afffected = statement.executeUpdate();
 			if (rows_afffected >= 0) {

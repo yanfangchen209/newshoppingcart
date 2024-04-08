@@ -10,12 +10,14 @@
     <script>
         function validateForm() {
             var productName = document.getElementById('productName').value.trim();
+            var brand = document.getElementById('brand').value.trim();
+            var description = document.getElementById('description').value.trim();
             var category = document.getElementById('category').value.trim();
             var price = document.getElementById('price').value.trim();
             var quantity = document.getElementById('quantity').value.trim();
 
             // Basic validation - Check if fields are not empty
-            if (productName === '' || category === '' || price === '' || quantity === '') {
+            if (productName === '' || brand === '' || description === '' || category === '' || price === '' || quantity === '') {
                 alert('All fields must be filled out');
                 return false;
             }
@@ -34,7 +36,14 @@
 	<div style="color: red;">${message}</div>
     <form action="add-product" method="post" onsubmit="return validateForm()">
         <label for="productName">Product Name:</label>
-        <input id="productName" name="productName" maxlength = 20 required><br><br>
+        <input id="productName" name="productName" required><br><br>
+        
+        <label for="brand">Brand:</label>
+        <input id="brand" name="brand"  required><br><br>
+        
+        <label for="description">Description:</label>
+        <input id="description" name="description" required><br><br>
+        
         
         <label for="category">Category:</label>
         <select id="category" name="category" required>

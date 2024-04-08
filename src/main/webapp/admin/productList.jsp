@@ -23,6 +23,8 @@
 		<tr>
 			<th>Id</th>
 			<th>Product Name</th>
+			<th>Brand</th>
+			<th>Description</th>
 			<th>Category</th>
 			<th>Price($)</th>
 			<th>Quantity</th>
@@ -32,6 +34,8 @@
 			<tr>
 				<td><c:out value="${item.id}"/></td>
 				<td><c:out value="${item.productName}"/></td>
+				<td><c:out value="${item.brand}"/></td>
+				<td><c:out value="${item.description}"/></td>
 				<td><c:out value="${item.category}"/></td>
 				<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${item.price}"/></td>
 				<td><c:out value="${item.quantity}"/></td>

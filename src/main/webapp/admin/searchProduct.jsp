@@ -15,8 +15,10 @@
 	<c:if test="${searchResult != null}">
 	    <p>Id: ${searchResult.id}</p>
 	    <p>Product Name: ${searchResult.productName}</p>
+	    <p>Brand: ${searchResult.brand}</p>
+	    <p>Description: ${searchResult.description}</p>
 	    <p>Category: ${searchResult.category}</p>
-	    <p>Price: ${searchResult.price}</p>
+	    <p>Price: ${searchResult.price}</p>	
 	    <p>Quantity: ${searchResult.quantity}</p>    
 	    
 	</c:if>

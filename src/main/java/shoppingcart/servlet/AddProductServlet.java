@@ -20,8 +20,8 @@ import shoppingcart.service.ProductDao;
 public class AddProductServlet extends HttpServlet {
 	
     //here hardcode categories, in production environemnt we usually create a category entity and create a category table in database
-	private static List<String> categories = new ArrayList<>(Arrays.asList("Snack", "Dish Washing", "electronics", "clothing", "books", 
-			"beauty and personal care", "sports", "toys", "office supplies", "other"));
+	public static List<String> categories = new ArrayList<>(Arrays.asList("Snack", "Dish Washing", "dairy", "clothing", "books", 
+			"Frozen Foods", " Grains and Pasta", "beverages", "fruit", "other"));
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,6 +35,8 @@ public class AddProductServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productName = request.getParameter("productName");
+        String brand = request.getParameter("brand");
+        String description = request.getParameter("description");
         String category = request.getParameter("category");
         double price = Double.parseDouble(request.getParameter("price"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -49,7 +51,7 @@ public class AddProductServlet extends HttpServlet {
             return;
         }
               
-        Product product = new Product(productName, category, price, quantity);
+        Product product = new Product(productName, brand, description, category, price, quantity);
         
         ProductDao productDao = new PostgresProductDao();
         boolean addResult = productDao.addProduct(product);

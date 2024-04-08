@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
- 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
 <!DOCTYPE html>
 <html>
@@ -16,8 +16,16 @@
 		<input id="productId" name="id" value="${product.id}" readonly><br><br>
 		<label for="productName">Product Name:</label>
 		<input id="productName" name="productName" value="${product.productName}"><br><br>
+		<label for="brand">Brand:</label>
+		<input id="brand" name="brand" value="${product.brand}"><br><br>
+		<label for="description">Description:</label>
+		<input id="description" name="description" value="${product.description}"><br><br>
 		<label for="category">Category:</label>
-		<input id="category" name="category" value="${product.category}"><br><br>
+		<select id="category" name="category"  required>
+        	<c:forEach var="category" items="${categories}">
+        		 <option value="${category}" <c:if test="${category == product.category}">selected</c:if>>${category}</option>
+        	</c:forEach>
+        </select><br><br>
 		 <!-- Format the price with two digits after the decimal point --> 
 		<label for="price">Price:</label>
 
