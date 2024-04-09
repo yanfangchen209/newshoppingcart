@@ -159,6 +159,13 @@
 		<servlet-name>NewJSToDoListServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.NewJSToDoListServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>CheckOutServlet</display-name>
+		<servlet-name>CheckOutServlet</servlet-name>
+		<servlet-class>shoppingcart.servlet.CheckOutServlet</servlet-class>
+	</servlet>
 	
 	
 	<servlet-mapping>
@@ -244,6 +251,10 @@
 	<servlet-mapping>
 		<servlet-name>NewJSToDoListServlet</servlet-name>
 		<url-pattern>/newtodolist</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CheckOutServlet</servlet-name>
+		<url-pattern>/CheckOutServlet</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>welcome.html</welcome-file>
