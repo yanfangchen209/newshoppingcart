@@ -166,6 +166,13 @@
 		<servlet-name>CheckOutServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.CheckOutServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ProductImagesServlet</display-name>
+		<servlet-name>ProductImagesServlet</servlet-name>
+		<servlet-class>shoppingcart.servlet.ProductImagesServlet</servlet-class>
+	</servlet>
 	
 	
 	<servlet-mapping>
@@ -255,6 +262,10 @@
 	<servlet-mapping>
 		<servlet-name>CheckOutServlet</servlet-name>
 		<url-pattern>/CheckOutServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ProductImagesServlet</servlet-name>
+		<url-pattern>/ProductImagesServlet</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>welcome.html</welcome-file>
