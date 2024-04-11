@@ -8,9 +8,10 @@ public class Product {
 	private String category;
 	private double price;
 	private int quantity;
+	private String image;
 	
 	public Product(Long id, String productName, String brand, String description, String category, double price,
-			int quantity) {
+			int quantity, String image) {
 		super();
 		this.id = id;
 		this.productName = productName;
@@ -19,22 +20,8 @@ public class Product {
 		this.category = category;
 		this.price = price;
 		this.quantity = quantity;
+		this.image = image;
 	}
-	
-	
-	
-	public Product(String productName, String brand, String description, String category, double price, int quantity) {
-		super();
-		this.productName = productName;
-		this.brand = brand;
-		this.description = description;
-		this.category = category;
-		this.price = price;
-		this.quantity = quantity;
-	}
-
-
-
 	public Long getId() {
 		return id;
 	}
@@ -77,10 +64,13 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
 	
-
 	
-
-
 }

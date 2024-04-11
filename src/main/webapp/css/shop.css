@@ -1,0 +1,83 @@
+/* Reset default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style for the body */
+body {
+    font-family: Arial, sans-serif;
+
+}
+
+/* Style for the product list */
+.productList {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Style for each product item */
+.productList li {
+    list-style: none;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 60px;
+    width: 250px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Style for the product image */
+.productList .image img {
+    max-width: 100%;
+    height: 150px; /* Set a fixed height for uniformity */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Style for the product description */
+.productList .description {
+    font-weight: bold;
+}
+
+/* Style for the product brand */
+.productList .brand {
+    font-style: italic;
+}
+
+/* Style for the product price */
+.productList .price {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Style for the shop action */
+.productList .shopAction {
+    margin-top: 10px;
+}
+
+
+/* Style for the quantity select */
+.productList select {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+/* Style for the add to cart button */
+.productList .addToCartButton {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.productList .addToCartButton:hover {
+    background-color: #218838;
+}

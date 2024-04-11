@@ -8,6 +8,8 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import shoppingcart.config.Configuration;
+
 
 public class Database {
 
@@ -16,12 +18,18 @@ public class Database {
     static {
     	BasicDataSource ds = new BasicDataSource();
     	
-    	//TODO should put this into property file.
+    	ds.setDriverClassName(Configuration.getProperty("ds.driverClassName"));
+    	ds.setUrl(Configuration.getProperty("ds.url"));
+    	ds.setUsername(Configuration.getProperty("ds.userName"));
+    	ds.setPassword(Configuration.getProperty("ds.password"));
+    	
+    	
+    	/*
     	ds.setDriverClassName("org.postgresql.Driver");
 		ds.setUrl("jdbc:postgresql://localhost:5432/useradmin");
 		ds.setUsername("chen");
 		ds.setPassword("secret");
-
+       */
 
 		ds.setMinIdle(5);
 		ds.setMaxIdle(10);
