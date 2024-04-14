@@ -19,7 +19,7 @@
 		<li style="float:right">
 			<a href="shoppingcart">
 				<i class="fa" style="font-size:24px">&#xf07a;</i>
-	    		<span class='badge' id='cartCount'> 5 </span>
+	    		<span class='badge' id='cartCount'> ${shoppingcart.totalItemsCount}</span>
 	    	</a>
 	    </li>
 	</ul>

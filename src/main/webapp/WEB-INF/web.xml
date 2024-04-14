@@ -187,6 +187,13 @@
 		<servlet-name>GetProductImagesServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.GetProductImagesServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AddToCartServlet</display-name>
+		<servlet-name>AddToCartServlet</servlet-name>
+		<servlet-class>shoppingcart.servlet.AddToCartServlet</servlet-class>
+	</servlet>
 	
 	
 	
@@ -285,6 +292,10 @@
 	<servlet-mapping>
 		<servlet-name>ShopServlet</servlet-name>
 		<url-pattern>/shop</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddToCartServlet</servlet-name>
+		<url-pattern>/addToCart</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -1,8 +1,14 @@
 package shoppingcart.service;
 
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.*;
+
+
+import shoppingcart.dao.PostgresProductDao;
+import shoppingcart.entity.Product;
 import shoppingcart.entity.ShoppingCartItem;
 
 
@@ -11,33 +17,73 @@ public class ShoppingCart {
 
 	List<ShoppingCartItem> cartItems = new ArrayList<>();
 	
-	//add
-	public boolean addToCart(ShoppingCartItem item) {
+	/*add, if item already exist in shopping cart, just add new quantity to old quantity, else if item not exist, 
+	 * add new item to the list*/
+	public void addToCart(ShoppingCartItem item) {
+			
+
+		ShoppingCartItem itemInCart = null;
 		
-		//if item already exist in shopping cart, just add new quantity to old quantity
+		//find out if the item to be added to cart is in cart according to id
+		for(ShoppingCartItem element: cartItems) {
+			if(element.getId() == item.getId()) {
+				itemInCart = element;
+			}
+		}
 		
-		//else if item not exist, add new item to the list
+		//if exisit, set new quantity, otherwise new item directly
+		if(itemInCart != null) {
+			itemInCart.setQuantity(item.getQuantity() + itemInCart.getQuantity());
+		}else {
+			cartItems.add(item);
+		}
 		
 	}
 	
-	//update
-	public boolean setItemQuantity(Long id, int newQuantity) {
-		//if newQuantity = 0, delete it from shopping cart
-		
-		//otherwise set new quantity
+	//update, if newQuantity = 0, delete it from shopping cart, otherwise set new quantity
+	public void setItemQuantity(Long id, int newQuantity) {
+
+		ShoppingCartItem itemToUpdate = null;
+		for(ShoppingCartItem item: cartItems) {
+			if(item.getId() == id) {
+				itemToUpdate = item;
+				break;
+			}
+		}		
+		if(newQuantity == 0) {
+			cartItems.remove(itemToUpdate);
+		}else {
+			itemToUpdate.setQuantity(newQuantity);
+		}
 		
 	}
 	
-	//delete
-	public boolean deleteItem(Long id) {
+	//delete, boolean remove(Object o)
+	public void deleteItem(Long id) {
 		
+		//use iterator to modify list
+		Iterator<ShoppingCartItem> it = cartItems.iterator();		
+		while(it.hasNext()) {
+			ShoppingCartItem item = it.next();
+			if(item.getId() == id) {
+				it.remove();
+			}
+		}
 		
+		/* use ordinary for loop to modify list
+		for(int i = 0; i < cartItems.size(); i++) {
+			ShoppingCartItem item = cartItems.get(i);
+			if(item.getId() == id) {
+				cartItems.remove(item);
+			}
+		}
+		*/
 	}
 	
 	//get total count of items in shopping cart
-	public int totalItemsCount() {
+	public int getTotalItemsCount() {
 		int totalCount = cartItems.stream()
-				.mapToInt(item -> item.getQuantity())
+				.map(item -> item.getQuantity())
 				.reduce(0, (count1, count2) -> count1 + count2);
 		return totalCount;
 		
@@ -45,10 +91,10 @@ public class ShoppingCart {
 	
 	
 	//get total amount of money in shopping cart
-	public double totalSubtotal() {
+	public double getTotalSubtotal() {
 		double subtotal = cartItems.stream()
-				.mapToDouble(item -> item.getPrice() * item.getQuantity())
-				.reduce(0, (subtotal1, subtotal2) -> subtotal1 + subtotal2);
+				.map(item -> item.getPrice() * item.getQuantity())
+				.reduce(0.0, (subtotal1, subtotal2) -> subtotal1 + subtotal2);
 		return subtotal;	
 	}
 	
