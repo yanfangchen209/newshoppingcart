@@ -46,11 +46,11 @@ public class ShopServlet extends HttpServlet {
 		//if session doesn't exist, create one
 		HttpSession session = request.getSession(true);
 		
-		ShoppingCart cart = (ShoppingCart)session.getAttribute("shoppingcart");
+		ShoppingCart cart = (ShoppingCart)session.getAttribute("shoppingCart");
 		//if key value pair shoppingcart not exist in session, set it
 		if(cart == null) {
 			cart = new ShoppingCart();
-			session.setAttribute("shoppingcart", cart);
+			session.setAttribute("shoppingCart", cart);
 		}
 		
 		

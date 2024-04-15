@@ -16,7 +16,7 @@
 		<c:forEach var = "item" items = "${products}">
        		<li>
 	        	<div class="image">
-	        		<img src="${pageContext.request.contextPath}/getimages?imageName=${item.image}" alt={item.image} />
+	        		<img src="getimages?imageName=${item.image}" alt={item.image} />
 	        	</div>
 	        	<div class="description">
 	        		<c:out value="${item.description}" />

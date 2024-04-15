@@ -15,7 +15,7 @@ import shoppingcart.entity.ShoppingCartItem;
 //crud operation of shopping cart items
 public class ShoppingCart {
 
-	List<ShoppingCartItem> cartItems = new ArrayList<>();
+	private List<ShoppingCartItem> cartItems = new ArrayList<>();
 	
 	/*add, if item already exist in shopping cart, just add new quantity to old quantity, else if item not exist, 
 	 * add new item to the list*/
@@ -28,10 +28,11 @@ public class ShoppingCart {
 		for(ShoppingCartItem element: cartItems) {
 			if(element.getId() == item.getId()) {
 				itemInCart = element;
+				break;
 			}
 		}
 		
-		//if exisit, set new quantity, otherwise new item directly
+		//if exist, set new quantity, otherwise new item directly
 		if(itemInCart != null) {
 			itemInCart.setQuantity(item.getQuantity() + itemInCart.getQuantity());
 		}else {
@@ -80,7 +81,7 @@ public class ShoppingCart {
 		*/
 	}
 	
-	//get total count of items in shopping cart
+	//get total count of items in shopping cart, in jsp,call it like this： shoppingCart.totalItemsCount
 	public int getTotalItemsCount() {
 		int totalCount = cartItems.stream()
 				.map(item -> item.getQuantity())
@@ -90,8 +91,8 @@ public class ShoppingCart {
 	}
 	
 	
-	//get total amount of money in shopping cart
-	public double getTotalSubtotal() {
+	//get total amount of money in shopping cart, in jsp,call it like this： shoppingCart.subtotal
+	public double getSubtotal() {
 		double subtotal = cartItems.stream()
 				.map(item -> item.getPrice() * item.getQuantity())
 				.reduce(0.0, (subtotal1, subtotal2) -> subtotal1 + subtotal2);
@@ -100,7 +101,7 @@ public class ShoppingCart {
 	
 	
 	
-	//get
+	//get, in jsp,call it like this： shoppingCart.allCartItems
 	public List<ShoppingCartItem> getAllCartItems(){
 		return cartItems;
 	}

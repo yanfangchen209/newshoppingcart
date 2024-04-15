@@ -194,6 +194,20 @@
 		<servlet-name>AddToCartServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.AddToCartServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>ShoppingCartServlet</display-name>
+		<servlet-name>ShoppingCartServlet</servlet-name>
+		<servlet-class>shoppingcart.servlet.ShoppingCartServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>UpdateQuantityServlet</display-name>
+		<servlet-name>UpdateQuantityServlet</servlet-name>
+		<servlet-class>shoppingcart.servlet.UpdateQuantityServlet</servlet-class>
+	</servlet>
 	
 	
 	
@@ -296,6 +310,14 @@
 	<servlet-mapping>
 		<servlet-name>AddToCartServlet</servlet-name>
 		<url-pattern>/addToCart</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ShoppingCartServlet</servlet-name>
+		<url-pattern>/shoppingcart</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UpdateQuantityServlet</servlet-name>
+		<url-pattern>/updatequantity</url-pattern>
 	</servlet-mapping>
 
 </web-app>

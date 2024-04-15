@@ -46,8 +46,8 @@ public class AddToCartServlet extends HttpServlet {
 		cart.addToCart(newItem);
 		
 		
-		//
-		request.getSession().setAttribute("shoppingcart", cart);
+		//don't forget to update session
+		request.getSession().setAttribute("shoppingCart", cart);
 		
 		//send total count back to shop.js so that it can update count in shopping cart icon accordingly.
 		int count = cart.getTotalItemsCount();
