@@ -2,6 +2,8 @@ package shoppingcart.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,8 +23,8 @@ public class UpdateQuantityServlet extends HttpServlet {
 	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("cartItemID"));
-		int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
+		Long id = Long.parseLong(request.getParameter("id"));
+		int newQuantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		ShoppingCart cart = (ShoppingCart)request.getSession(true).getAttribute("shoppingCart");
 		cart.setItemQuantity(id, newQuantity);
@@ -36,7 +38,11 @@ public class UpdateQuantityServlet extends HttpServlet {
 	
 		Map<String, Object> map = new HashMap<>();
 		map.put("totalCount", totalCount);
-		map.put("subtotal", subtotal);
+		DecimalFormat df = new DecimalFormat("#.00");
+		map.put("subtotal", df.format(subtotal));
+		
+		double itemSubtotal = cart.getItemSubTotal(id);
+		map.put("itemSubtotal", df.format(itemSubtotal));
 		
 		Gson gson = new Gson();
 		String responseInJson = gson.toJson(map);

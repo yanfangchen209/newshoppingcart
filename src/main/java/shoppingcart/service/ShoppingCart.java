@@ -4,8 +4,8 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.*;
-
 
 import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.entity.Product;
@@ -97,6 +97,13 @@ public class ShoppingCart {
 				.map(item -> item.getPrice() * item.getQuantity())
 				.reduce(0.0, (subtotal1, subtotal2) -> subtotal1 + subtotal2);
 		return subtotal;	
+	}
+	
+	public double getItemSubTotal(long id) {
+		Optional<ShoppingCartItem> item = cartItems.stream().filter(i -> i.getId() == id).findFirst();
+				
+		double itemSubTotal =  item.get().getPrice() * item.get().getQuantity();
+		return itemSubTotal;
 	}
 	
 	

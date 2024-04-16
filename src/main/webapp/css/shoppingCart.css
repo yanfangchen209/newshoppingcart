@@ -1,9 +1,30 @@
+/* shoppingCart.css */
 
-/* Style for cartItem */
+/* General styles */
+.shoppingcartdisplay {
+  width: 70%; /* Occupy 80% of the width */
+  margin: 0 auto; /* Align in center of the screen */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+}
+
+
+
+/* Cart item styles */
 .cartItem {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cartItem img {
@@ -12,14 +33,34 @@
   margin-right: 10px;
 }
 
-.cartItem select {
-  margin-left: left; /* Push select element to the right */
+.cartItem .description {
+  flex-grow: 1;
+  margin-left: 10px;
 }
 
-/* Style for submitForm */
+.cartItem .unitPrice,
+.cartItem .totalCost {
+ padding: 20px;
+}
+
+.cartItem .quantitySelect {
+ padding: 20px;
+}
+
+.cartItem .fa-trash-o {
+  color: red;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.cartItem .fa-trash-o:hover {
+  color: darkred;
+}
+
+/* Submit form styles */
 .submitForm {
   margin-top: 20px;
-  text-align: left;
+  text-align: center;
 }
 
 .submitForm button {
@@ -34,14 +75,4 @@
 
 .submitForm button:hover {
   background-color: #45a049;
-}
-
-/* Style for trash icon */
-.fa-trash-o {
-  cursor: pointer;
-  color: black;
-}
-
-.fa-trash-o:hover {
-  color: red;
 }

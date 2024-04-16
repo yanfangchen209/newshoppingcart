@@ -9,11 +9,7 @@
 	
 		//don't forget this, if quantity set to 0, delete this item from 0, other method???delete
 		
-		if(quantity == 0){
-			//If user set quantity to 0, we need delete this item from shopping cart.
-			var row = $(select).parents('.cartItemRow').first();
-			row.remove();
-		}
+		
 	
 		console.log("selectinput",quantity);
 		console.log("cartItemId", cartItemId);
@@ -26,10 +22,18 @@
 			//data is the response, the latest items count in shopping cart, update the shoppingcart icon in header
 			console.log(data);
 			//update shopping cart icon
-			$("#cartCount").html(data.totalCount);
+			$("#cartCount").text(data.totalCount);
+		    $("#totalCount").text(data.totalCount);
+			$("#subtotal").text(data.subtotal);
 			
-			//update subtotal and total count????
-		
-		
+			if(quantity == 0){
+				//If user set quantity to 0, we need delete this item from shopping cart.
+				var row = $(select).parents('.cartItem').first();
+				row.remove();
+			}
+			
+			var subtotalEle = $(select).siblings(".totalCost").first();
+			subtotalEle.text(data.itemSubtotal);
+
 	});
 }
