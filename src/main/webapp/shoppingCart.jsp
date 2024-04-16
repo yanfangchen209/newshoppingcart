@@ -24,7 +24,7 @@
 				<img src="getimages?imageName=${item.image}" alt={item.image} />
 			    <span class="description">${item.description}</span>
 			    <span class="unitPrice">each $${item.price}</span>
-	            <span class="totalCost">$${item.price * item.quantity}</span>
+	            <span class="totalCostContainer">$<span class="totalCost">${item.price * item.quantity}</span></span> 
 			    <select class="quantitySelect" name="quantity" onChange="quantityChangeHandler(this, ${item.id})">
 				    <option value="0" ${item.quantity == 0 ? 'selected' : ''}>0</option>
 				    <option value="1" ${item.quantity == 1 ? 'selected' : ''}>1</option>
@@ -34,7 +34,7 @@
 				    <option value="5" ${item.quantity == 5 ? 'selected' : ''}>5</option>
 				    <option value="6" ${item.quantity == 6 ? 'selected' : ''}>6</option>
 			    </select>
-			    <i class="fa fa-trash-o" style="font-size:36px"></i>
+			    <i class="fa fa-trash-o" style="font-size:36px" onClick="deleteCartItem(this, ${item.id})"></i>
 			</div>
 		</c:forEach>
 		<form action="checkout" method="post" class="submitForm">

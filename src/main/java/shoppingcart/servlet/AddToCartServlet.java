@@ -54,6 +54,8 @@ public class AddToCartServlet extends HttpServlet {
 		Gson gson = new Gson();
 		
 		//gson.toJson: java-json; gson.fromJson():json->java
+		
+		//eg."20", 
 		String countInJson = gson.toJson(count);
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");

@@ -32,8 +32,24 @@
 				row.remove();
 			}
 			
-			var subtotalEle = $(select).siblings(".totalCost").first();
-			subtotalEle.text(data.itemSubtotal);
+			$(select).siblings(".totalCostContainer").children(".totalCost").text(data.itemSubtotal);
 
 	});
+}
+
+
+//pass itemId to DeleteCartItemServlet to delete from shoppingCart list, if success, delete from UI
+function deleteCartItem(deleteButton, itemId){
+
+	$.post("deletecartitem", {id: itemId})
+		.done(function(data){
+			console.log(data);
+			//update shopping cart icon
+			$("#cartCount").text(data.totalCount);
+		    $("#totalCount").text(data.totalCount);
+			$("#subtotal").text(data.subtotal);
+			
+			var row = $(deleteButton).parents('.cartItem').first();
+			row.remove();
+		});
 }

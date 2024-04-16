@@ -99,15 +99,19 @@ public class ShoppingCart {
 		return subtotal;	
 	}
 	
+	/**/
 	public double getItemSubTotal(long id) {
 		Optional<ShoppingCartItem> item = cartItems.stream().filter(i -> i.getId() == id).findFirst();
 				
-		double itemSubTotal =  item.get().getPrice() * item.get().getQuantity();
-		return itemSubTotal;
+		if(item.isEmpty()) {
+			return 0.0;
+		} else {
+			double itemSubTotal =  item.get().getPrice() * item.get().getQuantity();
+			return itemSubTotal;
+		}
 	}
 	
-	
-	
+
 	//get, in jsp,call it like this： shoppingCart.allCartItems
 	public List<ShoppingCartItem> getAllCartItems(){
 		return cartItems;

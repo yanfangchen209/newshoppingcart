@@ -208,6 +208,13 @@
 		<servlet-name>UpdateQuantityServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.UpdateQuantityServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DeleteCartItemServlet</display-name>
+		<servlet-name>DeleteCartItemServlet</servlet-name>
+		<servlet-class>shoppingcart.servlet.DeleteCartItemServlet</servlet-class>
+	</servlet>
 	
 	
 	
@@ -318,6 +325,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateQuantityServlet</servlet-name>
 		<url-pattern>/updatequantity</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DeleteCartItemServlet</servlet-name>
+		<url-pattern>/deletecartitem</url-pattern>
 	</servlet-mapping>
 
 </web-app>
