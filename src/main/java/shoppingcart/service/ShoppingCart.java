@@ -1,6 +1,6 @@
 package shoppingcart.service;
 
-import java.awt.event.ItemEvent;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,7 +42,7 @@ public class ShoppingCart {
 	}
 	
 	//update, if newQuantity = 0, delete it from shopping cart, otherwise set new quantity
-	public void setItemQuantity(Long id, int newQuantity) {
+	public void setItemQuantity(Long id, int newQuantity){
 
 		ShoppingCartItem itemToUpdate = null;
 		for(ShoppingCartItem item: cartItems) {
@@ -50,13 +50,18 @@ public class ShoppingCart {
 				itemToUpdate = item;
 				break;
 			}
-		}		
-		if(newQuantity == 0) {
-			cartItems.remove(itemToUpdate);
-		}else {
-			itemToUpdate.setQuantity(newQuantity);
 		}
-		
+		if(itemToUpdate != null) {
+			if(newQuantity == 0) {
+				cartItems.remove(itemToUpdate);
+			}else {
+				itemToUpdate.setQuantity(newQuantity);
+			}
+		} else {
+			// Java allows classes within the same package to access each other directly without requiring an import statement.user definded runtime exception
+			throw new ItemNotFoundException();
+		}
+
 	}
 	
 	//delete, boolean remove(Object o)
@@ -99,7 +104,7 @@ public class ShoppingCart {
 		return subtotal;	
 	}
 	
-	/**/
+	/*method 2
 	public double getItemSubTotal(long id) {
 		Optional<ShoppingCartItem> item = cartItems.stream().filter(i -> i.getId() == id).findFirst();
 				
@@ -110,6 +115,24 @@ public class ShoppingCart {
 			return itemSubTotal;
 		}
 	}
+	*/
+	
+	//method 1
+	public double getItemSubTotal(long id) {
+		ShoppingCartItem foundItem = null;
+		for(ShoppingCartItem item: cartItems) {
+			if(item.getId() == id) {
+				foundItem = item;
+				double itemSubtotal = foundItem.getPrice() * foundItem.getQuantity();
+				return itemSubtotal;	
+			}
+		}
+		return 0.0;
+
+	}
+	
+	
+	
 	
 
 	//get, in jsp,call it like this： shoppingCart.allCartItems
