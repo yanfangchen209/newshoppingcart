@@ -22,6 +22,21 @@ public class Product {
 		this.quantity = quantity;
 		this.image = image;
 	}
+	
+	
+	public Product(String productName, String brand, String description, String category, double price, int quantity,
+			String image) {
+		super();
+		this.productName = productName;
+		this.brand = brand;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+		this.quantity = quantity;
+		this.image = image;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

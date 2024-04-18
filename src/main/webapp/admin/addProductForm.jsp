@@ -34,7 +34,7 @@
 </head>
 <body>
 	<div style="color: red;">${message}</div>
-    <form action="add-product" method="post" onsubmit="return validateForm()">
+    <form action="add-product" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
         <label for="productName">Product Name:</label>
         <input id="productName" name="productName" required><br><br>
         
@@ -57,7 +57,8 @@
         
         <label for="quantity">Quantity:</label>
         <input id="quantity" name="quantity" type="number" value" min="0" required><br><br>
-        
+        <label for="file">File Upload: </label>
+        <input id="file" type="file" name="imageFile" multiple /><br><br>
         <button type="submit">Add Product</button>
     </form>
 </body>

@@ -5,7 +5,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>User admin home</title>
-	<link rel="stylesheet" type="text/css" href="../css/userAdminHome">
+	<link rel="stylesheet" type="text/css" href="../css/userAdminHome.css">
 	
 </head>
 <body>

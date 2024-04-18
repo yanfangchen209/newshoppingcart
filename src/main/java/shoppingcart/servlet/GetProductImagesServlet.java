@@ -28,7 +28,7 @@ public class GetProductImagesServlet extends HttpServlet {
 	//private static final String IMAGE_DIRECTORY = "C:\\newshoppingcartproductimages";
 	
 	//private static final String IMAGE_DIRECTORY = "C:/newshoppingcartproductimages";
-	private static final String IMAGE_DIRECTORY = Configuration.getProperty("imageDirectory");
+	private static final String IMAGE_DIRECTORY = Configuration.getProperty("pathToReadProductImages");
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

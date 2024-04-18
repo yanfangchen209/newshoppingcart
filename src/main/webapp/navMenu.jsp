@@ -15,7 +15,6 @@
 	    <li><a href="shop">Products</a></li>
 	    <li style="float:right"><a href="login">Log in</a></li>
 	    <li style="float:right"><a href="signup">Sign up</a></li>
-		<li style="float:right"><a href="shop">Log out</a></li>
 		<li style="float:right">
 			<a href="shoppingcart">
 				<i class="fa" style="font-size:24px">&#xf07a;</i>
