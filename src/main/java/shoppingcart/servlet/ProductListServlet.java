@@ -14,6 +14,8 @@ import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.Product;
 import shoppingcart.service.ProductDao;
+import shoppingcart.service.ProductService;
+import shoppingcart.service.ProductServiceFactory;
 
 
 public class ProductListServlet extends HttpServlet {
@@ -22,6 +24,10 @@ public class ProductListServlet extends HttpServlet {
 		
 		ProductDao productDao = new PostgresProductDao();
 		List<Product> allProducts = productDao.findALLProducts();
+		
+		ProductService productService = ProductServiceFactory.createProductServiceInstance();
+		productService.findALLProducts();
+		
 		request.setAttribute("allProducts", allProducts);
 //		PrintWriter outPrintWriter = response.getWriter();
 //		outPrintWriter.print("test...");

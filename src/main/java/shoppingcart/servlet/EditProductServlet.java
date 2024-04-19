@@ -19,8 +19,9 @@ import shoppingcart.config.Configuration;
 import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.entity.Product;
 import shoppingcart.service.ImageService;
-import shoppingcart.service.LocalFileImageServiceImpl;
 import shoppingcart.service.ProductDao;
+import shoppingcart.service.ProductService;
+import shoppingcart.service.ProductServiceFactory;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024*1024*10, maxRequestSize = 1024*1024*50)
 public class EditProductServlet extends HttpServlet {
@@ -29,8 +30,11 @@ public class EditProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("id"));
-		ProductDao productDao = new PostgresProductDao();
-		Product product = productDao.findById(id);
+
+		
+	    ProductService productService = ProductServiceFactory.createProductServiceInstance();
+	    Product product = productService.findById(id);
+		
 		request.setAttribute("product", product);
 		
 		List<String> categories = AddProductServlet.categories;
@@ -52,7 +56,7 @@ public class EditProductServlet extends HttpServlet {
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		//TODO Create a factory
-		ImageService imageService = new LocalFileImageServiceImpl();
+		ImageService imageService = ImageService.getInstance();
 
 		//get image
 		Part filePart = request.getPart("newImage");
@@ -66,8 +70,11 @@ public class EditProductServlet extends HttpServlet {
 					id, productName, brand, description, category, price, quantity,
 					oldImageName);
 			
-			ProductDao productDao = new PostgresProductDao();
-			boolean updateResult = productDao.updateProduct(product);
+			
+			ProductService productService = ProductServiceFactory.createProductServiceInstance();
+			boolean updateResult = productService.updateProduct(product);
+			
+			
 			request.setAttribute("updateResult", updateResult);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("editProductResult.jsp");
@@ -80,8 +87,9 @@ public class EditProductServlet extends HttpServlet {
 					id, productName, brand, description, category, price, quantity,
 					uniqueImageName);
 			
-			ProductDao productDao = new PostgresProductDao();
-			boolean updateResult = productDao.updateProduct(product);
+
+			ProductService productService = ProductServiceFactory.createProductServiceInstance();
+			boolean updateResult = productService.updateProduct(product);
 			request.setAttribute("updateResult", updateResult);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("editProductResult.jsp");

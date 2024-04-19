@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.service.ProductDao;
+import shoppingcart.service.ProductService;
+import shoppingcart.service.ProductServiceFactory;
 
 public class DeleteProductServlet extends HttpServlet {
 	
@@ -18,8 +20,12 @@ public class DeleteProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		long id = Long.parseLong(request.getParameter("id"));
-		ProductDao productDao = new PostgresProductDao();
-		boolean deleteResult = productDao.deleteById(id);
+	
+		
+		ProductService productService = ProductServiceFactory.createProductServiceInstance();
+		boolean deleteResult = productService.deleteById(id);
+		
+		
 		request.setAttribute("deleteResult", deleteResult);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("deleteProductResult.jsp");

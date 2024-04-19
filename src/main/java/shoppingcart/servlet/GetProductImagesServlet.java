@@ -1,21 +1,18 @@
 package shoppingcart.servlet;
 
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.nio.file.Files;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import shoppingcart.config.Configuration;
 import shoppingcart.service.ImageService;
-import shoppingcart.service.LocalFileImageServiceImpl;
+
 
 
 
@@ -48,12 +45,13 @@ public class GetProductImagesServlet extends HttpServlet {
                 // Set the content type based on the image file's MIME type
               //  response.setContentType(getServletContext().getMimeType(imagePath));
                 
-            	ImageService imageService = new LocalFileImageServiceImpl();
+            	ImageService imageService = ImageService.getInstance();
             	InputStream inputStream = imageService.getImage(imageName);
 
                 // Get the output stream to write the image data
                 try (OutputStream outputStream = response.getOutputStream()) {
-
+                	
+                	/*
                     // Copy the image data to the response output stream
                     byte[] buffer = new byte[4096]; // Buffer size for reading input stream
                     int bytesRead;
@@ -62,6 +60,10 @@ public class GetProductImagesServlet extends HttpServlet {
                     }
                     // Flush the output stream to ensure all data is written
                     outputStream.flush();
+                    */
+                	inputStream.transferTo(outputStream);
+                	outputStream.flush();
+                	
                 }
 
 

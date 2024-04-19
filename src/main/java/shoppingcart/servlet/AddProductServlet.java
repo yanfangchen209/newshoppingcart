@@ -26,8 +26,9 @@ import shoppingcart.config.Configuration;
 import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.entity.Product;
 import shoppingcart.service.ImageService;
-import shoppingcart.service.LocalFileImageServiceImpl;
 import shoppingcart.service.ProductDao;
+import shoppingcart.service.ProductService;
+import shoppingcart.service.ProductServiceFactory;
 
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, maxFileSize = 1024*1024*10, maxRequestSize = 1024*1024*50)
@@ -59,7 +60,7 @@ public class AddProductServlet extends HttpServlet {
         Part filePart = request.getPart("imageFile");
         String imageName = filePart.getSubmittedFileName();
         
-        ImageService imageService = new LocalFileImageServiceImpl();
+        ImageService imageService = ImageService.getInstance();
         String uniqueImageName = null;	
 
         //if image not provided, it is actually not friendly to give user a error page, it is better to send a message to jsp and let it show adding product page, user filled data previously should be shown
@@ -153,8 +154,10 @@ public class AddProductServlet extends HttpServlet {
         
         Product product = new Product(productName, brand, description, category, price, quantity, uniqueImageName);
         
-        ProductDao productDao = new PostgresProductDao();
-        boolean addResult = productDao.addProduct(product);
+
+        
+        ProductService productService = ProductServiceFactory.createProductServiceInstance();
+        boolean addResult = productService.addProduct(product);
         request.setAttribute("addResult", addResult);
         
 		RequestDispatcher rd = request.getRequestDispatcher("addProductResult.jsp");

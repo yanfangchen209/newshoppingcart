@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import shoppingcart.config.Configuration;
-
-public class LocalFileImageServiceImpl implements ImageService{
+class LocalFileImageServiceImpl implements ImageService{
 
 	public LocalFileImageServiceImpl() {
 	}
