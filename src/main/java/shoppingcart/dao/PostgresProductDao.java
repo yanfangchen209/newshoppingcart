@@ -15,9 +15,9 @@ import shoppingcart.service.ProductDao;
 public class PostgresProductDao implements ProductDao{
 	
 	private static final String SELECT_PRODUCT_BY_ID = "SELECT * FROM products WHERE id=?";
-	private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM products";
+	private static final String SELECT_ALL_PRODUCTS = "SELECT * FROM products ORDER BY id";
 	private static final String DELETE_PRODUCT_BY_ID = "DELETE FROM products WHERE id = ?";
-	private static final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, brand = ?, description = ?, category = ?, price = ?, quantity = ? image = ? WHERE id = ?";
+	private static final String UPDATE_PRODUCT = "UPDATE products SET productName = ?, brand = ?, description = ?, category = ?, price = ?, quantity = ?, image = ? WHERE id = ?";
 	private static final String SELECT_PRODUCT_BY_NAME = "SELECT * FROM products WHERE productName=?";
 	private static final String ADD_PRODUCT = "INSERT INTO products(productName, brand, description, category, price, quantity, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
 

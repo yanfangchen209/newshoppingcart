@@ -25,6 +25,8 @@ import javax.servlet.http.Part;
 import shoppingcart.config.Configuration;
 import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.entity.Product;
+import shoppingcart.service.ImageService;
+import shoppingcart.service.LocalFileImageServiceImpl;
 import shoppingcart.service.ProductDao;
 
 
@@ -55,8 +57,34 @@ public class AddProductServlet extends HttpServlet {
         
         //retrieve uploaded image using getPart(), filePart isn't file name, we have to use :String submittedFileName = part.getSubmittedFileName();
         Part filePart = request.getPart("imageFile");
+        String imageName = filePart.getSubmittedFileName();
+        
+        ImageService imageService = new LocalFileImageServiceImpl();
+        String uniqueImageName = null;	
+
+        //if image not provided, it is actually not friendly to give user a error page, it is better to send a message to jsp and let it show adding product page, user filled data previously should be shown
+        //or let js to validate data before user click "addProduct" button
+        //don't forget "return " to terminate execution of code followed.
+        if (!imageName.isEmpty()) {
+            try {
+            	uniqueImageName = imageService.saveImage(filePart);
+            } catch(Exception e){
+            	//print to console like system.out.print()
+            	e.printStackTrace();
+            	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save file.");
+            	return;
+            }
+
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Image not provided");
+            return;
+        }
         
         
+        
+        
+        
+        /**
         //generate unique name  using UUID for each product image, include extension
         String uniqueImageName = generateUniqueFileName(filePart);
         
@@ -66,42 +94,47 @@ public class AddProductServlet extends HttpServlet {
         String imageDirectory = configuration.getProperty("pathToWriteProductImages");
         String pathToSaveImage = imageDirectory + "/" + uniqueImageName;
 
-//        
-//        try {
-//        	
-//        	filePart.write(pathToSaveImage);
-//        	System.out.println("writing complete");
-//        }catch(IOException e){
-//        	e.printStackTrace();
-//        	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save file.");
-//        	return;
-//        }
+       //the best method, write()  is new method of java
         
-        /*
-        try (InputStream inputStream = filePart.getInputStream();
-                OutputStream outputStream = new FileOutputStream(pathToSaveImage)) {
-               // Copy the content of the part to the output stream
-               byte[] buffer = new byte[1024];
-               int bytesRead;
-               while ((bytesRead = inputStream.read(buffer)) != -1) {
-                   outputStream.write(buffer, 0, bytesRead);
-               }
-       }catch (IOException e) {
-    	    e.printStackTrace();
-    	    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save file.");
-    	    return;
-    	}
-    	*/
+        try {
+        	
+        	filePart.write(pathToSaveImage);
+        	System.out.println("writing complete");
+        }catch(IOException e){
+        	//print to console like system.out.print()
+        	e.printStackTrace();
+        	response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save file.");
+        	return;
+        }
+        **/
         
-        try (InputStream inputStream = filePart.getInputStream();
-                OutputStream outputStream = new FileOutputStream(pathToSaveImage)) {
-               // Copy the content of the part to the output stream
-               inputStream.transferTo(outputStream);
-       }catch (IOException e) {
-    	    e.printStackTrace();
-    	    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save file.");
-    	    return;
-    	}
+        
+        //method 2: old methods of java, works
+//        try (InputStream inputStream = filePart.getInputStream();
+//                OutputStream outputStream = new FileOutputStream(pathToSaveImage)) {
+//               // Copy the content of the part to the output stream
+//               byte[] buffer = new byte[1024];
+//               int bytesRead;
+//               while ((bytesRead = inputStream.read(buffer)) != -1) {
+//                   outputStream.write(buffer, 0, bytesRead);
+//               }
+//       }catch (IOException e) {
+//    	    e.printStackTrace();
+//    	    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save file.");
+//    	    return;
+//    	}
+    	
+        
+        //method 3: nice method, works
+//        try (InputStream inputStream = filePart.getInputStream();
+//                OutputStream outputStream = new FileOutputStream(pathToSaveImage)) {
+//               // Copy the content of the part to the output stream
+//               inputStream.transferTo(outputStream);
+//       }catch (IOException e) {
+//    	    e.printStackTrace();
+//    	    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to save file.");
+//    	    return;
+//    	}
     	
         
         
@@ -157,15 +190,7 @@ public class AddProductServlet extends HttpServlet {
         
 	}
 	
-	private String generateUniqueFileName(Part part) {
-		//get image name of the uploaded image
-		String submittedFileName = part.getSubmittedFileName();
-		String extention = submittedFileName.substring(submittedFileName.lastIndexOf("."));
-		
-		String uniqueName = UUID.randomUUID().toString() + extention;
-		return uniqueName;
-		
-	}
+	
 
 
 

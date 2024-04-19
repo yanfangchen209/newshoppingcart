@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="../css/editProduct.css">
 </head>
 <body>
-	<form action="editProduct" method="post">
+	<form action="editProduct" method="post" enctype="multipart/form-data">
 		<label for="productId">Id:</label>
 		<input id="productId" name="id" value="${product.id}" readonly><br><br>
 		<label for="productName">Product Name:</label>
@@ -32,6 +32,12 @@
 		<input id="price" name="price" value='<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${product.price}"/>'><br><br>
 		<label for="quantity">Quantity:</label>
 		<input id="quantity" name="quantity" value="${product.quantity}"><br><br>
+		<label>Image:</label><br>
+	    <img src="../getimages?imageName=${product.image}" alt={item.image} } />
+	    <input type="hidden" name="oldImage" value="${product.image}" />
+		<label for="newImage">New Image Upload:</label>
+		<input type="file" id="newImage" name="newImage"><br><br>
+
 		<button type="submit">Save</button><br><br>
 	</form>
 	<button onclick="window.location.href='productList'">Go back to product list</button>
