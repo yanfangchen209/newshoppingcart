@@ -1,38 +1,38 @@
 package shoppingcart.servlet;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CheckOutServlet
- */
-public class CheckOutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CheckOutServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+import shoppingcart.service.ShoppingCart;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+
+public class CheckOutServlet extends HttpServlet {
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ShoppingCart cart = (ShoppingCart)request.getSession().getAttribute("shoppingCart");
+		double subtotal = cart.getSubtotal();
+		int totalCount = cart.getTotalItemsCount();
+		
+		DecimalFormat dfFormat = new DecimalFormat("#.##");
+		String formattedSubtotal = dfFormat.format(subtotal);
+		
+		
+		request.setAttribute("subtotal", formattedSubtotal);
+		request.setAttribute("totalCount", totalCount);
+		RequestDispatcher rd = request.getRequestDispatcher("checkOut.jsp");
+		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doGet(request, response);
 	}
 

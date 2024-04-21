@@ -1,0 +1,63 @@
+/* Style for the checkout page */
+.checkOutPage {
+    display: flex;
+    flex-direction: column; /* Align items in a column */
+    align-items: center; /* Center items horizontally */
+    margin: 50px auto;
+    max-width: 800px;
+}
+
+/* Style for the order summary */
+.orderSummary {
+    border: 1px solid  #ccc;
+    padding: 20px;
+    width: 100%; /* Take full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+    margin-bottom: 20px; /* Add space below the order summary */
+}
+
+/* Style for order summary items */
+.orderSummary span {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 20px; /* Add margin to the right for spacing */
+}
+
+
+/* Style for the address form */
+.address {
+    width: 100%; /* Take full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Style for form labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Style for form inputs */
+input[type="text"],
+input[type="phone"],
+select {
+    width: calc(100% - 10px);
+    margin-bottom: 15px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for the Place Order button */
+.placeOrderButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect for the Place Order button */
+.placeOrderButton:hover {
+    background-color: #45a049;
+}

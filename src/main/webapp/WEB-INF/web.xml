@@ -215,6 +215,13 @@
 		<servlet-name>DeleteCartItemServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.DeleteCartItemServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>PlaceOrderServlet</display-name>
+		<servlet-name>PlaceOrderServlet</servlet-name>
+		<servlet-class>shoppingcart.servlet.PlaceOrderServlet</servlet-class>
+	</servlet>
 	
 	
 	
@@ -329,6 +336,10 @@
 	<servlet-mapping>
 		<servlet-name>DeleteCartItemServlet</servlet-name>
 		<url-pattern>/deletecartitem</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>PlaceOrderServlet</servlet-name>
+		<url-pattern>/placeorder</url-pattern>
 	</servlet-mapping>
 
 </web-app>
