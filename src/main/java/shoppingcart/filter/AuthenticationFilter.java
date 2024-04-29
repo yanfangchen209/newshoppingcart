@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import shoppingcart.entity.UserInfo;
 
+
+/*In the authentication process, we are using filters that allow us to perform some operations
+ *  before a request goes to the controller or before a response is sent to a client.*/
 public class AuthenticationFilter implements Filter {
 
 	public static final String USER_SESSION_KEY = "userInfo";
@@ -33,13 +36,7 @@ public class AuthenticationFilter implements Filter {
 		//We just want to check if user has an session and user info in the session.
 		// Make sure we do not create a session by getSession(false)
 		HttpSession session = req.getSession(false);
-		boolean isAuthenticated = false;
-		if(session != null) {
-			UserInfo userInfo = (UserInfo)session.getAttribute(USER_SESSION_KEY);
-			if(userInfo != null) {
-				isAuthenticated = true;
-			}
-		}
+		boolean isAuthenticated = session != null && session.getAttribute(USER_SESSION_KEY) != null;
 		
 		if(isAuthenticated) {
 			System.out.println("User is authenticated, let it proceed");

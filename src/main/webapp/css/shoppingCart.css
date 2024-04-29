@@ -76,3 +76,10 @@ h2 {
 .submitForm button:hover {
   background-color: #45a049;
 }
+
+/* Disabled button style */
+button[type="submit"]:disabled {
+  background-color: #ccc; /* Change background color */
+  cursor: not-allowed;   /* Change cursor */
+  opacity: 0.5;           /* Reduce opacity */
+}

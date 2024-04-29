@@ -38,6 +38,9 @@ public class Database {
 		dataSource = ds;
     }
 
+    public static DataSource getDataSource(){
+    	return dataSource;
+    }
     public static Connection getConnection() throws SQLException{
         return dataSource.getConnection();
     }

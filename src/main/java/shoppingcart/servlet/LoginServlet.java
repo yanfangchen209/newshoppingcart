@@ -68,6 +68,10 @@ public class LoginServlet extends HttpServlet {
 				/*
 	The method request.getSession(true) and request.getSession() are functionally equivalent. Both methods are used to retrieve the 
 	current session associated with the request. If a session does not exist, both methods will create a new session.*/
+				/* In many web applications, a session is created for a user after successful authentication (login). 
+				 * Once the user logs in, the application establishes a session and assigns a session ID to the user. 
+				 * This session ID is typically stored in a session cookie on the client side.*/
+				
 				User user = userDao.find(credential.getId());
 				List<String> capabilities = userDao.findCapabilities(credential.getId());
 
@@ -75,10 +79,10 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session  = request.getSession(true);
 				session.setAttribute(AuthenticationFilter.USER_SESSION_KEY, userInfo);
 				//log in successfully, show the content to user
-				response.sendRedirect("admin/home");			
-				/*
-				 * Returns the object bound with the specified name in this session, or
-	     * <code>null</code> if no object is bound under the name.
+				response.sendRedirect("admin/home");
+				
+				
+				/*Returns the object bound with the specified name in this session, or <code>null</code> if no object is bound under the name.
 				Integer count = (Integer)session.getAttribute("count");
 				if(count == null) {
 					count = 0;

@@ -40,7 +40,9 @@
 		<form action="checkout" method="post" class="submitForm">
 	    	<p>Subtotal: $<span id="subtotal"><fmt:formatNumber type = "number" maxFractionDigits="2" value = "${shoppingCart.subtotal}" /></span></p>
 	        	<p >Total items: <span id="totalCount">${shoppingCart.totalItemsCount}</span></p>
-	        	<button type="submit">Check Out</button>
+	        	<button id="checkoutButton" type="submit" ${shoppingCart.totalItemsCount == 0 ? 'disabled' : ''}>Check Out</button>
+
+
 	    </form>
 	  </div>
 </body>

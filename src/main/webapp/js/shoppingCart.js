@@ -34,6 +34,9 @@
 			
 			$(select).siblings(".totalCostContainer").children(".totalCost").text(data.itemSubtotal);
 
+			if(data.totalCount == 0){
+				$("#checkoutButton").attr("disabled", "disabled");
+			}
 	});
 }
 
@@ -51,5 +54,9 @@ function deleteCartItem(deleteButton, itemId){
 			
 			var row = $(deleteButton).parents('.cartItem').first();
 			row.remove();
+			
+			if(data.totalCount == 0){
+				$("#checkoutButton").attr("disabled", "disabled");
+			}
 		});
 }

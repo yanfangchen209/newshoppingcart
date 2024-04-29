@@ -8,6 +8,7 @@ public interface ImageService {
 	public String saveImage(Part filePart);
 	public InputStream getImage(String imageName);
 	
+	//JAVA8 later, interface can have static methods
 	public static ImageService getInstance() {
 		//we can either store images in local, ftp or google cloud.. which are different implementations
 		/*in configuration file, get type and then decide what implementation class instance to return (if, else)so that we
