@@ -4,11 +4,15 @@ import java.util.List;
 
 public class UserInfo {
 	private User user;
-	private List<String> capabilities;
-	public UserInfo(User user, List<String> capabilities) {
+	private List<String> roleNames;
+	
+	public UserInfo() {
+		super();
+	}
+	public UserInfo(User user, List<String> roleNames) {
 		super();
 		this.user = user;
-		this.capabilities = capabilities;
+		this.roleNames = roleNames;
 	}
 	public User getUser() {
 		return user;
@@ -16,12 +20,15 @@ public class UserInfo {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public List<String> getCapabilities() {
-		return capabilities;
+	public List<String> getRoleNames() {
+		return roleNames;
 	}
-	public void setCapabilities(List<String> capabilities) {
-		this.capabilities = capabilities;
+	public void setRoleNames(List<String> roleNames) {
+		this.roleNames = roleNames;
 	}
+	
+	
+
 
 
 	

@@ -10,8 +10,11 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import javax.management.relation.Role;
+
 import shoppingcart.entity.User;
 import shoppingcart.entity.UserCredential;
+import shoppingcart.entity.UserWithRoleName;
 import shoppingcart.service.UserDao;
 
 import shoppingcart.util.CredentialUtils;
@@ -22,11 +25,16 @@ public class PostgresUserDao implements UserDao {
 	
 	private static final String SELECT_USER_BY_ID = "select * from users where id=?";
 	private static final String SELECT_USER_BY_USERNAME = "select * from users where user_name=?";
-	private static final String SELECT_ALL_SQL = "SELECT id, user_name, email, role_id FROM users";
-	//private static final String SELECT_ALL_SQL = "SELECT u.id, u.user_name, u.email, r.role_name FROM users u join roles r on u.role_id = r.role_id";
+	private static final String SELECT_ALL_SQL = "SELECT id, user_name, email, role_id FROM users ORDER BY id";
 	private static final String ADD_USER_SQL = "insert into users(user_name, password_salt, password_hash, email, role_id) VALUES (?, ?, ?, ?, ?)";
 	private static final String UPDATE_USER_SQL = "UPDATE users SET user_name = ?, email = ?, role_id = ? WHERE id = ?";
 	private static final String DELETE_USER_SQL = "delete from users where id = ?";
+	private static final String SELECT_ALL_WITH_ROLENAME_SQL =
+            "SELECT u.id, u.user_name, u.email, r.role_name " +
+            "FROM users u " +
+            "JOIN roles r ON u.role_id = r.id " +
+            "ORDER BY id";
+	private static final String SELECT_ROLENAMES_SQL= "SELECT r.role_name FROM users u INNER JOIN roles r ON u.role_id = r.id where u.id=?";
 	
 	
 	@Override
@@ -219,9 +227,60 @@ public class PostgresUserDao implements UserDao {
 			}
 		
 	}
+	
+	
+    // Implement the new method to return users with role names
+    public List<UserWithRoleName> findAllWithRoleNames() {
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_WITH_ROLENAME_SQL);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            List<UserWithRoleName> users = new ArrayList<>();
+            while (resultSet.next()) {
+                UserWithRoleName user = new UserWithRoleName();
+                user.setId(resultSet.getLong("id"));
+                user.setUserName(resultSet.getString("user_name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setRoleName(resultSet.getString("role_name"));
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+	
+	//
+    @Override
+    public List<String> getRoleName(long userId){
+        List<String> roleNames = new ArrayList<>();
+
+        try (Connection connection = Database.getConnection();
+             PreparedStatement statement = connection.prepareStatement(SELECT_ROLENAMES_SQL)) {
+            statement.setLong(1, userId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    String roleName = resultSet.getString("role_name");
+                    roleNames.add(roleName);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle or log the exception properly
+        }
+
+        return roleNames;
+    }
+	 
+    
+    
+    
+	
+	
 
 	
-	@Override
+	/*
+	 * 	@Override
 	public List<String> findCapabilities(long id){
 		if(id % 2 == 0) {
 			return List.of("canEditUsers", "canEditProduct");
@@ -229,7 +288,9 @@ public class PostgresUserDao implements UserDao {
 			return new ArrayList<>();
 		}
 		
-	}
+	}*/
+	
+
 
 
 	

@@ -1,6 +1,7 @@
 package shoppingcart.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.checkerframework.checker.units.qual.m;
+
 import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.User;
+import shoppingcart.entity.UserInfo;
 import shoppingcart.service.UserDao;
 
 /**
@@ -32,8 +36,10 @@ public class SearchUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long userId = Long.parseLong(request.getParameter("searchId"));
 		UserDao userDao = new PostgresUserDao();
-		User result = userDao.find(userId);
-		request.setAttribute("result", result);
+		User user = userDao.find(userId);
+		List<String> roleNames = userDao.getRoleName(userId);
+		UserInfo userInfo = new UserInfo(user, roleNames);
+		request.setAttribute("result", userInfo);
 		RequestDispatcher rd = request.getRequestDispatcher("searchUser.jsp");
 		rd.forward(request, response);
 		

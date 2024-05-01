@@ -17,6 +17,7 @@ import shoppingcart.entity.Role;
 import shoppingcart.entity.User;
 import shoppingcart.service.RoleDao;
 import shoppingcart.service.UserDao;
+import shoppingcart.util.CredentialUtils;
 
 /**
  * Servlet implementation class AddUserServlet
@@ -40,6 +41,7 @@ public class AddUserServlet extends HttpServlet {
 		in select box (create drop down list), after user input username, email and choose rolename, username, email and roleid will be send 
 		to dopost method of adduser servlet
 		**/
+		CredentialUtils.checkRole(request, "Administrator");
 		
 		RoleDao roleDao = new PostgresRoleDao();
 		List<Role> roleList = roleDao.findAll();

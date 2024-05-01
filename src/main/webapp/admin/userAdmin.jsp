@@ -44,7 +44,7 @@
             <td class = "right"><c:out value="${item.id}" /></td>
             <td class = "center"><c:out value="${item.userName}" /></td>
             <td class = "center"><c:out value="${item.email}" /></td>
-            <td class = "center"><c:out value="${item.roleId}" /></td>
+            <td class = "center"><c:out value="${item.roleName}" /></td>
 	    	<td><a href = "editUser?id=${item.id}">Edit User</a>
            		<a href = "deleteUser?id=${item.id}">Delete User</a>
             </td>

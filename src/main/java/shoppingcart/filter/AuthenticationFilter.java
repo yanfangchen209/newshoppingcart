@@ -55,11 +55,21 @@ public class AuthenticationFilter implements Filter {
 			System.out.println("User is authenticated, let it proceed");
 			//this doFilter method is to figure out which filter to invoke next( passing control to the next filter in the chain ), or if it's 
 			//end of chain, which servlet's service()method
+			
+			//1.
 			chain.doFilter(request, response);
 			
-			//more code,Additional tasks after calling service method and before sending response
+			
+			
+			//2.more code,Additional tasks after calling service method and before sending response
 			//For example, logging or setting response headers
 			//
+			
+			//3.if check role capability in filter, we can do it here, get part of url and get user role from session,
+			//give access to servlet method, get or post(see, edit, add, delete), using if else, but we can also check role 
+			//capability in each serlvets.
+			
+			
 		} else {
 			//TODO do not hardcode shoppingcart app name   //   /shoppingcart/login,    getContextPath return /shoppingcart
 			((HttpServletResponse)response).sendRedirect(req.getContextPath() + "/login");

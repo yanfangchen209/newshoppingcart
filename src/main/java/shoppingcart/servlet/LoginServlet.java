@@ -73,10 +73,14 @@ public class LoginServlet extends HttpServlet {
 				 * This session ID is typically stored in a session cookie on the client side.*/
 				
 				User user = userDao.find(credential.getId());
-				List<String> capabilities = userDao.findCapabilities(credential.getId());
-
-				UserInfo userInfo = new UserInfo(user, capabilities);
+    			List<String> roleNames = userDao.getRoleName(credential.getId());
+    			
+    			//given user id, find all role names and add in session attribute USER_SESSION_KEY
+				UserInfo userInfo = new UserInfo(user, roleNames);
 				HttpSession session  = request.getSession(true);
+				
+
+    			
 				session.setAttribute(AuthenticationFilter.USER_SESSION_KEY, userInfo);
 				//log in successfully, show the content to user
 				response.sendRedirect("admin/home");

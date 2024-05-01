@@ -8,10 +8,10 @@
     <h2>Search Result:</h2>
 
     <c:if test="${result != null}">
-        <p>User Id: ${result.id}</p>
-        <p>User Name:${result.userName}</p>
-        <p>User Email:${result.email}</p>
-        <p>User RoleId:${result.roleId}</p>
+        <p>User Id: ${result.user.id}</p>
+        <p>User Name:${result.user.userName}</p>
+        <p>User Email:${result.user.email}</p>
+        <p>User Role:${result.roleNames}</p>
     </c:if>
     <c:if test="${result == null}">
         <p>User not found.</p>

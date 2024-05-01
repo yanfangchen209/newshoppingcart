@@ -4,8 +4,19 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
+
+import shoppingcart.dao.PostgresProductDao;
+import shoppingcart.dao.PostgresUserDao;
+import shoppingcart.entity.User;
+import shoppingcart.entity.UserInfo;
+import shoppingcart.filter.AuthenticationFilter;
+import shoppingcart.service.UserDao;
 
 public class CredentialUtils{
 
@@ -85,6 +96,24 @@ public class CredentialUtils{
         System.out.println("Hashed Password: " + hashedPassword);
 
     }
+    
+    
+    //given a role name, check if a given role will pass this check , finally used in addUserServlet to check authorization, for instance , this 
+    //servlet can only be edit with "administrator" role.(doGet method) 
+    public static void checkRole(HttpServletRequest request, String roleName) {
+    	boolean allowed = false;
+    	HttpSession session = request.getSession(false);
+    	if(session != null) {
+    		UserInfo user = (UserInfo)session.getAttribute(AuthenticationFilter.USER_SESSION_KEY);
+    		if(user != null) {
+    			List<String> roleNames = user.getRoleNames();
+    			allowed = roleNames.contains(roleName);
+    		}
+    	}
+    	if(!allowed) {
+    		throw new RuntimeException("Unauthorized");
+    	}
+	}
 
 
 }
