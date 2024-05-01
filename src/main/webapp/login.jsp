@@ -42,6 +42,7 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
     </style>
 </head>
 <body>
@@ -51,8 +52,10 @@
 	${message}
     <h2>Welcome</h2>
     <form action="/shoppingcart/login" method="post">
-        <input type="text" name="username" placeholder="Phone number, username, or email" required>
+        <input type="text" name="username" value="${userName}" required>
         <input type="password" name="password" placeholder="Password" required>
+        <input type="checkbox" id="rememberMe" name="rememberMe"/>
+        <label for="rememberMe">Remember me</label>
         <button type="submit">Sign In</button>
     </form>
 </div>

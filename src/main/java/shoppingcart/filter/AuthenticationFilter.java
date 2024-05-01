@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import shoppingcart.entity.UserInfo;
-
 
 /*All of these URLs /admin/ would trigger the authenticationFilter to execute its logic before the request 
  * reaches the servlet or resource associated with the requested URL. This allows you to enforce 

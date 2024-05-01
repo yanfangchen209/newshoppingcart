@@ -10,11 +10,9 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import javax.management.relation.Role;
 
 import shoppingcart.entity.User;
 import shoppingcart.entity.UserCredential;
-import shoppingcart.entity.UserWithRoleName;
 import shoppingcart.service.UserDao;
 
 import shoppingcart.util.CredentialUtils;
@@ -23,14 +21,14 @@ public class PostgresUserDao implements UserDao {
 
 
 	
-	private static final String SELECT_USER_BY_ID = "select * from users where id=?";
+	private static final String SELECT_USER_BY_ID = "select u.*, r.role_name from users u join roles r on u.role_id=r.id where u.id=?  ";
 	private static final String SELECT_USER_BY_USERNAME = "select * from users where user_name=?";
 	private static final String SELECT_ALL_SQL = "SELECT id, user_name, email, role_id FROM users ORDER BY id";
 	private static final String ADD_USER_SQL = "insert into users(user_name, password_salt, password_hash, email, role_id) VALUES (?, ?, ?, ?, ?)";
 	private static final String UPDATE_USER_SQL = "UPDATE users SET user_name = ?, email = ?, role_id = ? WHERE id = ?";
 	private static final String DELETE_USER_SQL = "delete from users where id = ?";
 	private static final String SELECT_ALL_WITH_ROLENAME_SQL =
-            "SELECT u.id, u.user_name, u.email, r.role_name " +
+            "SELECT u.id, u.user_name, u.email, u.role_id, r.role_name " +
             "FROM users u " +
             "JOIN roles r ON u.role_id = r.id " +
             "ORDER BY id";
@@ -40,7 +38,7 @@ public class PostgresUserDao implements UserDao {
 	@Override
 	public List<User> findAll(){
 		
-		try(Connection connection = Database.getConnection();PreparedStatement statement = connection.prepareStatement(SELECT_ALL_SQL);
+		try(Connection connection = Database.getConnection();PreparedStatement statement = connection.prepareStatement(SELECT_ALL_WITH_ROLENAME_SQL);
 				ResultSet resultset = statement.executeQuery()){
 			
 			//Iterate the ResetSet to collect data into user list.
@@ -51,7 +49,8 @@ public class PostgresUserDao implements UserDao {
 						resultset.getLong("id"),
 						resultset.getString("user_name"),
 						resultset.getString("email"),
-						resultset.getInt("role_id")); 
+						resultset.getInt("role_id"),
+						resultset.getString("role_name")); 
 						
 				
 				//Add the created product in our list.
@@ -86,7 +85,8 @@ public class PostgresUserDao implements UserDao {
 						user = new User(resultset.getLong("id"), 
 								 	resultset.getString("user_name"),
 									resultset.getString("email"),
-									resultset.getInt("role_id")
+									resultset.getInt("role_id"),
+									resultset.getString("role_name")
 								); 
 								
 					}
@@ -228,27 +228,6 @@ public class PostgresUserDao implements UserDao {
 		
 	}
 	
-	
-    // Implement the new method to return users with role names
-    public List<UserWithRoleName> findAllWithRoleNames() {
-        try (Connection connection = Database.getConnection();
-             PreparedStatement statement = connection.prepareStatement(SELECT_ALL_WITH_ROLENAME_SQL);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            List<UserWithRoleName> users = new ArrayList<>();
-            while (resultSet.next()) {
-                UserWithRoleName user = new UserWithRoleName();
-                user.setId(resultSet.getLong("id"));
-                user.setUserName(resultSet.getString("user_name"));
-                user.setEmail(resultSet.getString("email"));
-                user.setRoleName(resultSet.getString("role_name"));
-                users.add(user);
-            }
-            return users;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 	
 	//
     @Override

@@ -1,48 +1,49 @@
 package shoppingcart.entity;
 
+//users table has columns:id, user_name, email, role_id, password_salt, password_hash
+//this project assuem each user has only one role
 public class User {
-	private long id;
-	private String userName;
-	private String email;
-	private int roleId;
+	private final long id;
+	private final String userName;
+	private final String email;
+	private final int roleId;
+	private final String roleName;
 	
 	public long getId() {
 		return id;
 	}
 	public User(long id, String userName, String email, int roleId) {
+		this(id, userName, email, roleId, null);
+	}
+	public User(long id, String userName, String email, int roleId, String roleName) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.email = email;
 		this.roleId = roleId;
+		this.roleName = roleName;
 	}
 	public User(String userName, String email, int roleId) {
-		super();
-		this.userName = userName;
-		this.email = email;
-		this.roleId = roleId;
+		this(0, userName, email, roleId);
 	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public String getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	
 	public int getRoleId() {
 		return roleId;
 	}
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+
+	public String getRoleName() {
+		return roleName;
 	}
+	
+	
 	
 
 

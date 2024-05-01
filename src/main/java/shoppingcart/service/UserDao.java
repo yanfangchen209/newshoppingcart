@@ -1,13 +1,8 @@
 package shoppingcart.service;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.management.relation.Role;
 
 import shoppingcart.entity.User;
 import shoppingcart.entity.UserCredential;
-import shoppingcart.entity.UserWithRoleName;
 
 
 
@@ -33,10 +28,6 @@ public interface UserDao {
 	
 	//update
 	int update(User user);
-	
-	
-	//find all user, but intead of show role id, this time , we show role name for user display
-	 List<UserWithRoleName> findAllWithRoleNames();
 
 	 
 	 List<String> getRoleName(long userId);

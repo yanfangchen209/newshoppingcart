@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.User;
-import shoppingcart.entity.UserWithRoleName;
 import shoppingcart.service.UserDao;
 
 /**
@@ -35,7 +34,7 @@ public class UserListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Call UserDao service to find all users.
 		UserDao userService = new PostgresUserDao();
-		List<UserWithRoleName> userList = userService.findAllWithRoleNames();
+		List<User> userList = userService.findAll();
 		  
 		
 		String creationMessage = (String)request.getSession().getAttribute("userCreationMessage");

@@ -13,7 +13,6 @@ import org.checkerframework.checker.units.qual.m;
 
 import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.User;
-import shoppingcart.entity.UserInfo;
 import shoppingcart.service.UserDao;
 
 /**
@@ -37,9 +36,8 @@ public class SearchUserServlet extends HttpServlet {
 		Long userId = Long.parseLong(request.getParameter("searchId"));
 		UserDao userDao = new PostgresUserDao();
 		User user = userDao.find(userId);
-		List<String> roleNames = userDao.getRoleName(userId);
-		UserInfo userInfo = new UserInfo(user, roleNames);
-		request.setAttribute("result", userInfo);
+
+		request.setAttribute("result", user);
 		RequestDispatcher rd = request.getRequestDispatcher("searchUser.jsp");
 		rd.forward(request, response);
 		

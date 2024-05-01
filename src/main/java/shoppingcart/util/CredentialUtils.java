@@ -11,12 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import shoppingcart.dao.PostgresProductDao;
-import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.User;
-import shoppingcart.entity.UserInfo;
 import shoppingcart.filter.AuthenticationFilter;
-import shoppingcart.service.UserDao;
 
 public class CredentialUtils{
 
@@ -104,10 +100,9 @@ public class CredentialUtils{
     	boolean allowed = false;
     	HttpSession session = request.getSession(false);
     	if(session != null) {
-    		UserInfo user = (UserInfo)session.getAttribute(AuthenticationFilter.USER_SESSION_KEY);
-    		if(user != null) {
-    			List<String> roleNames = user.getRoleNames();
-    			allowed = roleNames.contains(roleName);
+    		User user = (User)session.getAttribute(AuthenticationFilter.USER_SESSION_KEY);
+    		if(user != null && user.getRoleName() != null) {
+    			allowed = user.getRoleName().equals(roleName);
     		}
     	}
     	if(!allowed) {

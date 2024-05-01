@@ -1,10 +1,12 @@
 package shoppingcart.servlet;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.User;
 import shoppingcart.entity.UserCredential;
-import shoppingcart.entity.UserInfo;
 import shoppingcart.filter.AuthenticationFilter;
 import shoppingcart.service.UserDao;
 import shoppingcart.util.CredentialUtils;
@@ -31,6 +32,19 @@ public class LoginServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//everytime user visit login page, check if have persistent cookie("rememberMe", "uniqueIdentifier"), it exist, autofill
+		//its user name(for security, not autofill password), otherwise not autofill username
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null) {
+			for (Cookie cookie: cookies) {
+				if(cookie.getName().equals("rememberMe")) {
+					// Extract the userName from the cookie
+					String userName = cookie.getValue();
+					request.setAttribute("userName", userName);
+				}
+				
+			}
+		}
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 	    rd.forward(request, response);
 	}
@@ -40,6 +54,14 @@ public class LoginServlet extends HttpServlet {
 		
 		String enteredUsername = request.getParameter("username");
 		String enteredPassword = request.getParameter("password");
+		boolean rememberMe = request.getParameter("rememberMe") != null;
+		
+		//if "remember me " is checked, create a cookie
+		if(rememberMe) {
+			Cookie rememberMECookie = new Cookie("rememberMe", enteredUsername);
+			rememberMECookie.setMaxAge(60*60*24*7);//1 week in seconds
+			response.addCookie(rememberMECookie);
+		}
 		
 		//get salt and hashedpassword from database according to the username
 		UserDao userDao = new PostgresUserDao();
@@ -73,15 +95,12 @@ public class LoginServlet extends HttpServlet {
 				 * This session ID is typically stored in a session cookie on the client side.*/
 				
 				User user = userDao.find(credential.getId());
-    			List<String> roleNames = userDao.getRoleName(credential.getId());
     			
-    			//given user id, find all role names and add in session attribute USER_SESSION_KEY
-				UserInfo userInfo = new UserInfo(user, roleNames);
 				HttpSession session  = request.getSession(true);
 				
 
     			
-				session.setAttribute(AuthenticationFilter.USER_SESSION_KEY, userInfo);
+				session.setAttribute(AuthenticationFilter.USER_SESSION_KEY, user);
 				//log in successfully, show the content to user
 				response.sendRedirect("admin/home");
 				

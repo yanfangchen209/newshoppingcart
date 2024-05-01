@@ -27,7 +27,7 @@
         <label for="roleName">Role:</label>
         <select id="roleName" name="roleId" required>
         	<c:forEach var="role" items="${roles}">
-        		<option value="${role.id}">${role.roleName}</option>
+        		<option value="${role.id}" ${role.roleName == user.roleName ? 'selected' : ''}>${role.roleName}</option>
             </c:forEach> 
         </select>
         <br>  <br>

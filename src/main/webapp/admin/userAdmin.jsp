@@ -46,7 +46,7 @@
             <td class = "center"><c:out value="${item.email}" /></td>
             <td class = "center"><c:out value="${item.roleName}" /></td>
 	    	<td><a href = "editUser?id=${item.id}">Edit User</a>
-           		<a href = "deleteUser?id=${item.id}">Delete User</a>
+           		<span style="margin: 0px 8px 0px 8px">|</span><a href = "deleteUser?id=${item.id}">Delete User</a>
             </td>
             
           </tr>
