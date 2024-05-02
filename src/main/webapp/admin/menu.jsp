@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+<!-- pageContext.request.contextPath} returns "/shoppingcart" -->
 <ul>
   <li><a href="${pageContext.request.contextPath}/admin/home">Home</a></li>
   <li><a href="${pageContext.request.contextPath}/admin/user/userList">Users</a></li> <!-- relative url: localhost:8080/shoppingcart/index.html -->

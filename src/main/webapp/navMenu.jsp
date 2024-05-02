@@ -13,9 +13,7 @@
 	<ul>
 	    <li><a href="shop">MunchMart</a></li>
 	    <li><a href="shop">Products</a></li>
-	    <li style="float:right"><a href="login">Log in</a></li>
-	    <li style="float:right"><a href="signup">Sign up</a></li>
-		<li style="float:right">
+		<li style="margin-left: 1000px">
 			<a href="shoppingcart">
 				<i class="fa" style="font-size:24px">&#xf07a;</i>
 	    		<span class='badge' id='cartCount'> ${shoppingCart.totalItemsCount}</span>

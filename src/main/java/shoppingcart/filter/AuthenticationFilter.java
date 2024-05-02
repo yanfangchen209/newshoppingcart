@@ -57,6 +57,7 @@ public class AuthenticationFilter implements Filter {
 			System.out.println("User is authenticated, let it proceed");
 			
 			//check authorization after authentication:
+			//only 3 roles in this app, if it is administrator, if success log in can browser any pages, home, user or product
 			//if url start with admin/home, any user with any role successfully logged in can see it
 			
 			//if url start with admin/user/*, can only be accessed by role: Administrator
@@ -66,23 +67,25 @@ public class AuthenticationFilter implements Filter {
 			//return eg. /shoppingcart/admin/product/productList
 			String requestPath = req.getRequestURI();
 			//System.out.println(requestPath);
+			
+			/*If your web application is deployed at the root of the server (e.g., http://localhost:8080/), the context path will be an empty string ("").
+If your web application is deployed under a specific context path (e.g., http://localhost:8080/myapp/), the context path will be /myapp.*/
 			String contextPath = req.getContextPath();
+			
 			if(requestPath.startsWith(contextPath + "/admin/user/")) {
-				boolean allowed = CredentialUtils.checkRole(req, "Administrator");
+				boolean allowed = CredentialUtils.checkRole(req, "Admin") || CredentialUtils.checkRole(req, "User Administrator");
 				if(!allowed) {
-					throw new RuntimeException("Not an administrator");
+					throw new RuntimeException("Not an user administrator");
 				}
 			}
+
 			if(requestPath.startsWith(contextPath + "/admin/product/")) {
-				boolean allowed = CredentialUtils.checkRole(req, "Content Manager");
+				boolean allowed = CredentialUtils.checkRole(req, "Admin") || CredentialUtils.checkRole(req, "Content Manager");
 				if(!allowed) {
 					throw new RuntimeException("Not an content manager");
 				}
 			}
 			
-			
-	
-	
 			//this doFilter method is to figure out which filter to invoke next( passing control to the next filter in the chain ), or if it's 
 			//end of chain, which servlet's service()method
 			
@@ -102,6 +105,7 @@ public class AuthenticationFilter implements Filter {
 			
 		} else {
 			//TODO do not hardcode shoppingcart app name   //   /shoppingcart/login,    getContextPath return /shoppingcart
+			//If not successfully logged in, redirect to log in page
 			((HttpServletResponse)response).sendRedirect(req.getContextPath() + "/login");
 		}
 	}

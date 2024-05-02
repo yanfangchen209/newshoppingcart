@@ -10,5 +10,6 @@
 <body>
 	<jsp:include page="navMenu.jsp"/>
 	<p>Thanks for your order!<br/>We'll send confirmations and order updates to <br/>example@gmail.com </p>
+	<a href="/shoppingcart/shop">Go to shopping page</a>
 </body>
 </html>
