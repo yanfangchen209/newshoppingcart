@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Delete product by id confirmation</title>
-<link rel="stylesheet" type="text/css" href="../css/deleteProductConfirmation.css">
+<link rel="stylesheet" type="text/css" href="/shoppingcart/css/deleteProductConfirmation.css">
 </head>
 <body>
 	<h1>Are you sure to delete this product?</h1>

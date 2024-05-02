@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>delete product by id final message</title>
-<link rel="stylesheet" type="text/css" href="../css/deleteProduct.css">
+<link rel="stylesheet" type="text/css" href="/shoppingcart/css/deleteProduct.css">
 </head>
 <body>
 

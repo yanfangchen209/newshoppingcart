@@ -96,7 +96,7 @@ public class CredentialUtils{
     
     //given a role name, check if a given role will pass this check , finally used in addUserServlet to check authorization, for instance , this 
     //servlet can only be edit with "administrator" role.(doGet method) 
-    public static void checkRole(HttpServletRequest request, String roleName) {
+    public static boolean checkRole(HttpServletRequest request, String roleName) {
     	boolean allowed = false;
     	HttpSession session = request.getSession(false);
     	if(session != null) {
@@ -105,9 +105,7 @@ public class CredentialUtils{
     			allowed = user.getRoleName().equals(roleName);
     		}
     	}
-    	if(!allowed) {
-    		throw new RuntimeException("Unauthorized");
-    	}
+    	return allowed;
 	}
 
 

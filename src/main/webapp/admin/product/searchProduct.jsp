@@ -8,7 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>search product</title>
-<link rel="stylesheet" type="text/css" href="../css/searchProduct.css">
+<link rel="stylesheet" type="text/css" href="/shoppingcart/css/searchProduct.css">
 </head>
 <body>
 

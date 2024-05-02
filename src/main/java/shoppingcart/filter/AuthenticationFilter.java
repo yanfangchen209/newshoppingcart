@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import shoppingcart.util.CredentialUtils;
+
 
 /*All of these URLs /admin/ would trigger the authenticationFilter to execute its logic before the request 
  * reaches the servlet or resource associated with the requested URL. This allows you to enforce 
@@ -43,6 +45,8 @@ public class AuthenticationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		
+		
+		
 		HttpServletRequest req = (HttpServletRequest)request;
 		//We just want to check if user has an session and user info in the session.
 		// Make sure we do not create a session by getSession(false)
@@ -51,6 +55,34 @@ public class AuthenticationFilter implements Filter {
 		
 		if(isAuthenticated) {
 			System.out.println("User is authenticated, let it proceed");
+			
+			//check authorization after authentication:
+			//if url start with admin/home, any user with any role successfully logged in can see it
+			
+			//if url start with admin/user/*, can only be accessed by role: Administrator
+			//if url start with admin/product/*, can only be accessed by role: Content Manager
+			
+			
+			//return eg. /shoppingcart/admin/product/productList
+			String requestPath = req.getRequestURI();
+			//System.out.println(requestPath);
+			String contextPath = req.getContextPath();
+			if(requestPath.startsWith(contextPath + "/admin/user/")) {
+				boolean allowed = CredentialUtils.checkRole(req, "Administrator");
+				if(!allowed) {
+					throw new RuntimeException("Not an administrator");
+				}
+			}
+			if(requestPath.startsWith(contextPath + "/admin/product/")) {
+				boolean allowed = CredentialUtils.checkRole(req, "Content Manager");
+				if(!allowed) {
+					throw new RuntimeException("Not an content manager");
+				}
+			}
+			
+			
+	
+	
 			//this doFilter method is to figure out which filter to invoke next( passing control to the next filter in the chain ), or if it's 
 			//end of chain, which servlet's service()method
 			

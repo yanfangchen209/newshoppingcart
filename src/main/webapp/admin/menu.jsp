@@ -5,16 +5,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel='stylesheet' href='../css/menu.css'>
+	<link rel='stylesheet' href='${pageContext.request.contextPath}/css/menu.css'>
 </head>
 
 <body>
 
 <ul>
-  <li><a href="home">Home</a></li>
-  <li><a href="userList">Users</a></li> <!-- relative url: localhost:8080/shoppingcart/index.html -->
-  <li><a href="productList">Products</a></li>
-  <li style="float:right"><a href="../logOut">Log Out</a></li>  <!-- relative url: localhost:8080/shoppingcart/index.html -->
+  <li><a href="${pageContext.request.contextPath}/admin/home">Home</a></li>
+  <li><a href="${pageContext.request.contextPath}/admin/user/userList">Users</a></li> <!-- relative url: localhost:8080/shoppingcart/index.html -->
+  <li><a href="${pageContext.request.contextPath}/admin/product/productList">Products</a></li>
+  <li style="float:right"><a href="${pageContext.request.contextPath}/logOut">Log Out</a></li>  <!-- relative url: localhost:8080/shoppingcart/index.html -->
 </ul>
 
 </body>

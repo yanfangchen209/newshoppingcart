@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 		String enteredPassword = request.getParameter("password");
 		boolean rememberMe = request.getParameter("rememberMe") != null;
 		
-		//if "remember me " is checked, create a cookie
+		//if "remember me " is checked, create a cookie and add to response
 		if(rememberMe) {
 			Cookie rememberMECookie = new Cookie("rememberMe", enteredUsername);
 			rememberMECookie.setMaxAge(60*60*24*7);//1 week in seconds

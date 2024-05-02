@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Confirm Delete</title>
-	<link rel='stylesheet' type='text/css' href="../css/deleteUser.css">
+	<link rel='stylesheet' type='text/css' href="/shoppingcart/css/deleteUser.css">
 </head>
 <body>
 

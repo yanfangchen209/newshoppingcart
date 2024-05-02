@@ -8,10 +8,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>show all products</title>
-<link rel='stylesheet' type="text/css" href="../css/productList.css">
+<link rel='stylesheet' type="text/css" href="../../css/productList.css">
 </head>
 <body>
-<jsp:include page="menu.jsp"/>
+<jsp:include page="../menu.jsp"/>
 <div>
 	<button onclick="window.location.href='add-product'">Add Product</button>
 	<form action='search-product' method='post'>

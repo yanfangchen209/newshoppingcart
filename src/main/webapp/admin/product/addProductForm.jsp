@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
+    <link rel="stylesheet" type="text/css" href="/shoppingcart/css/addProduct.css"/>
     <script>
         function validateForm() {
             var productName = document.getElementById('productName').value.trim();

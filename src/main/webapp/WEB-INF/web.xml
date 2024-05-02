@@ -15,13 +15,6 @@
 	<servlet>
 		<description>
 		</description>
-		<display-name>HelloServlet</display-name>
-		<servlet-name>HelloServlet</servlet-name>
-		<servlet-class>shoppingcart.HelloServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
 		<display-name>SetProfileServlet</display-name>
 		<servlet-name>SetProfileServlet</servlet-name>
 		<servlet-class>shoppingcart.SetProfileServlet</servlet-class>
@@ -224,11 +217,6 @@
 	</servlet>
 	
 	
-	
-	<servlet-mapping>
-		<servlet-name>HelloServlet</servlet-name>
-		<url-pattern>/hello</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SetProfileServlet</servlet-name>
 		<url-pattern>/profile</url-pattern>
@@ -255,23 +243,23 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>UserListServlet</servlet-name>
-		<url-pattern>/admin/userList</url-pattern>
+		<url-pattern>/admin/user/userList</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddUserServlet</servlet-name>
-		<url-pattern>/admin/addUser</url-pattern>
+		<url-pattern>/admin/user/addUser</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SearchUserServlet</servlet-name>
-		<url-pattern>/admin/searchUser</url-pattern>
+		<url-pattern>/admin/user/searchUser</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>EditUserServlet</servlet-name>
-		<url-pattern>/admin/editUser</url-pattern>
+		<url-pattern>/admin/user/editUser</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteUserServlet</servlet-name>
-		<url-pattern>/admin/deleteUser</url-pattern>
+		<url-pattern>/admin/user/deleteUser</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>LogOutServlet</servlet-name>
@@ -279,23 +267,23 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ProductListServlet</servlet-name>
-		<url-pattern>/admin/productList</url-pattern>
+		<url-pattern>/admin/product/productList</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DeleteProductServlet</servlet-name>
-		<url-pattern>/admin/deleteProduct</url-pattern>
+		<url-pattern>/admin/product/deleteProduct</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>EditProductServlet</servlet-name>
-		<url-pattern>/admin/editProduct</url-pattern>
+		<url-pattern>/admin/product/editProduct</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>SearchProductServlet</servlet-name>
-		<url-pattern>/admin/search-product</url-pattern>
+		<url-pattern>/admin/product/search-product</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddProductServlet</servlet-name>
-		<url-pattern>/admin/add-product</url-pattern>
+		<url-pattern>/admin/product/add-product</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ToDoListServlet</servlet-name>

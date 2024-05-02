@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit User</title>
-    <link rel="stylesheet" type="text/css" href='../css/editUser.css'>
+    <link rel="stylesheet" type="text/css" href='../../css/editUser.css'>
     <!-- <link rel="stylesheet" type="text/css" href='/shoppingcart/css/editUser.css'> -->
 </head>
 <body>

@@ -3,10 +3,10 @@
 <html>
 <head>
 	<title>User list admin</title>
-	<link rel="stylesheet" type="text/css" href="/shoppingcart/css/userAdmin.css">
+	<link rel="stylesheet" type="text/css" href="../../css/userAdmin.css">
 </head>
 <body>
-<jsp:include page="menu.jsp"/>
+<jsp:include page="../menu.jsp"/>
 <div align="center">
 	
 	<!--  <button onclick="window.location.href='${pageContext.request.contextPath}/admin/addUser'">Add User</button>-->

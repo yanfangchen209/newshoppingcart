@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Search Result</title>
+     <link rel="stylesheet" type="text/css" href='../../css/searchUser.css'>
 </head>
 <body>
     <h2>Search Result:</h2>

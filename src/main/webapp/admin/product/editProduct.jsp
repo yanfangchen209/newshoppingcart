@@ -8,7 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>edit product</title>
-<link rel="stylesheet" type="text/css" href="../css/editProduct.css">
+<link rel="stylesheet" type="text/css" href="/shoppingcart/css/editProduct.css">
 </head>
 <body>
 	<form action="editProduct" method="post" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
 		<label for="quantity">Quantity:</label>
 		<input id="quantity" name="quantity" value="${product.quantity}"><br><br>
 		<label>Image:</label><br>
-	    <img src="../getimages?imageName=${product.image}" alt={item.image} } />
+	    <img src="/shoppingcart/getimages?imageName=${product.image}" alt={item.image} } />
 	    <input type="hidden" name="oldImage" value="${product.image}" />
 		<label for="newImage">New Image Upload:</label>
 		<input type="file" id="newImage" name="newImage"><br><br>

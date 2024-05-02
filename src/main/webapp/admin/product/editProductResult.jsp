@@ -7,7 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>edit product result</title>
-<link rel="stylesheet" type="text/css" href="../css/editProductResult.css">
+<link rel="stylesheet" type="text/css" href="/shoppingcart/css/editProductResult.css">
 </head>
 <body>
 
