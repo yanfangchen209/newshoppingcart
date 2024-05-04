@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.taglibs.standard.lang.jstl.AndOperator;
+
 import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.User;
 import shoppingcart.entity.UserCredential;
@@ -56,6 +58,11 @@ public class LoginServlet extends HttpServlet {
 		String enteredPassword = request.getParameter("password");
 		boolean rememberMe = request.getParameter("rememberMe") != null;
 		
+		//todo: validate email and password
+		
+		
+
+		
 		//if "remember me " is checked, create a cookie and add to response
 		if(rememberMe) {
 			Cookie rememberMECookie = new Cookie("rememberMe", enteredUsername);
@@ -63,8 +70,8 @@ public class LoginServlet extends HttpServlet {
 			response.addCookie(rememberMECookie);
 		}
 		
-		//get salt and hashedpassword from database according to the username
-		UserDao userDao = new PostgresUserDao();
+		//get salt and hashedpassword from database according to the username, return null if not found user according to username
+		UserDao userDao = UserDao.getInstance();
 		UserCredential credential = userDao.findUserCredential(enteredUsername);
 		
 		if(credential == null){
@@ -134,7 +141,24 @@ public class LoginServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 	    rd.forward(request, response);
 	}
-
-
+	
+	//if userName is not empty, it is valid
+	public boolean userNameIsValid(String userName) {
+		if(userName != null && !userName.trim().isEmpty()) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
+	//for simple log in, not use Pattern.matches(passwordPattern, password), just check if it is not emtpy
+	public boolean passwordIsValid(String password) {
+		if(password != null && !password.trim().isEmpty()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 }

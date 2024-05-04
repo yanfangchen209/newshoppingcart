@@ -38,12 +38,12 @@ public class EditUserServlet extends HttpServlet {
 		
 		//get user name, email and role id from the given id , then set request attribute so that jsp can set them as default value
 		long userid = Long.parseLong(request.getParameter("id"));
-		UserDao userDao = new PostgresUserDao();
+		UserDao userDao = UserDao.getInstance();
 		User user = userDao.find(userid);
 		request.setAttribute("user", user);
 		
 		//get all roles
-		RoleDao roleDao = new PostgresRoleDao();
+		RoleDao roleDao = RoleDao.getInstance();
 		List<Role> roleList = roleDao.findAll();
 		request.setAttribute("roles", roleList);
 		
@@ -62,7 +62,7 @@ public class EditUserServlet extends HttpServlet {
 		int roleId = Integer.parseInt(request.getParameter("roleId"));
 		User user = new User(id, userName, email, roleId);
 		
-		UserDao userDao = new PostgresUserDao();
+		UserDao userDao = UserDao.getInstance();
 		userDao.update(user);
 		
 		//transfer message to userlistServlet

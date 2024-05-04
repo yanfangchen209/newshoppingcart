@@ -4,7 +4,7 @@ import shoppingcart.entity.Product;
 
 
 //in practice, this should be more bussiness logic and focus on user case(eg.create order which will invoke ProductDao)
-//in this project, logic is simple so it looks the same.
+//in this project, business logic is simple so it looks the same.
 public interface ProductService {
 	List<Product> findALLProducts();
 	Product findById(long id);

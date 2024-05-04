@@ -2,6 +2,7 @@ package shoppingcart.service;
 
 import java.util.List;
 
+import shoppingcart.dao.PostgresRoleDao;
 import shoppingcart.entity.Role;
 
 public interface RoleDao {
@@ -20,6 +21,11 @@ public interface RoleDao {
 	
 	//5.return number of rows edited
 	//int update(int id);
+	
+	//factory method, used to create an instance of the interface implementation
+	static RoleDao getInstance() {
+		return new PostgresRoleDao();
+	}
 	
 
 }

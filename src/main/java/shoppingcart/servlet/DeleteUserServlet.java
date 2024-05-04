@@ -49,7 +49,7 @@ Let's consider an example where you have a button or link in your user list to e
 		 * 
 		 * */
 		long userId = Long.parseLong(request.getParameter("id"));
-		UserDao userDao = new PostgresUserDao();
+		UserDao userDao = UserDao.getInstance();
 		int rows_deleted = userDao.delete(userId);
 		
 //        // Delete the user if found

@@ -10,7 +10,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 import shoppingcart.config.Configuration;
 
-
+//singleton design?data source
 public class Database {
 
     private static DataSource dataSource;

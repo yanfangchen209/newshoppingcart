@@ -6,6 +6,7 @@ import shoppingcart.entity.Product;
 
 public class ProductServiceImpl implements ProductService {
 	
+	//dependency injection
 	ProductDao productDao;
 	public ProductServiceImpl(ProductDao productDao) {
 		this.productDao = productDao;

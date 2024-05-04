@@ -34,7 +34,7 @@ public class SearchUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long userId = Long.parseLong(request.getParameter("searchId"));
-		UserDao userDao = new PostgresUserDao();
+		UserDao userDao = UserDao.getInstance();
 		User user = userDao.find(userId);
 
 		request.setAttribute("result", user);

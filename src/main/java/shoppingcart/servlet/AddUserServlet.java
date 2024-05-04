@@ -43,7 +43,7 @@ public class AddUserServlet extends HttpServlet {
 		**/
 		CredentialUtils.checkRole(request, "Administrator");
 		
-		RoleDao roleDao = new PostgresRoleDao();
+		RoleDao roleDao = RoleDao.getInstance();
 		List<Role> roleList = roleDao.findAll();
 		request.setAttribute("roles", roleList);
 		
@@ -63,7 +63,7 @@ public class AddUserServlet extends HttpServlet {
 	    int roleId = Integer.parseInt(request.getParameter("roleId"));
 	  
 	 
-		UserDao userDao = new PostgresUserDao();
+		UserDao userDao = UserDao.getInstance();
 		User user = new User(userName, email, roleId);
 		//add method will store the new user to database
 		userDao.add(user, password);

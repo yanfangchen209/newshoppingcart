@@ -33,7 +33,7 @@ public class UserListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Call UserDao service to find all users.
-		UserDao userService = new PostgresUserDao();
+		UserDao userService = UserDao.getInstance();
 		List<User> userList = userService.findAll();
 		  
 		

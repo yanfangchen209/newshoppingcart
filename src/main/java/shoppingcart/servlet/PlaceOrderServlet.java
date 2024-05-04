@@ -18,6 +18,8 @@ public class PlaceOrderServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//do data validation for customer address info here
 		//save order and shipping address info to backend
 		
 		//direct to order confirmation jsp

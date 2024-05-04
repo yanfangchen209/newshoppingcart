@@ -1,6 +1,7 @@
 package shoppingcart.service;
 import java.util.List;
 
+import shoppingcart.dao.PostgresUserDao;
 import shoppingcart.entity.User;
 import shoppingcart.entity.UserCredential;
 
@@ -38,6 +39,11 @@ public interface UserDao {
 	
 	//select a user with username = and password=
 	//boolean findByUsernamePassword(String userName, String password);
+	 
+		//factory method, used to create an instance of the interface implementation
+	 static UserDao getInstance() {
+		 return new PostgresUserDao();
+	 }
 	
 	
 }

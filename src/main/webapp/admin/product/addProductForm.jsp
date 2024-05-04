@@ -59,7 +59,7 @@
         <label for="quantity">Quantity:</label>
         <input id="quantity" name="quantity" type="number" value" min="0" required><br><br>
         <label for="file">File Upload: </label>
-        <input id="file" type="file" name="imageFile" multiple /><br><br>
+        <input id="file" type="file" name="imageFile" multiple required/><br><br>
         <button type="submit">Add Product</button>
     </form>
 </body>
