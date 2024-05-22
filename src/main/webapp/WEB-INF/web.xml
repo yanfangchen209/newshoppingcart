@@ -15,34 +15,6 @@
 	<servlet>
 		<description>
 		</description>
-		<display-name>SetProfileServlet</display-name>
-		<servlet-name>SetProfileServlet</servlet-name>
-		<servlet-class>shoppingcart.SetProfileServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>VisitCounterServlet</display-name>
-		<servlet-name>VisitCounterServlet</servlet-name>
-		<servlet-class>shoppingcart.VisitCounterServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>VisitCountingServlet</display-name>
-		<servlet-name>VisitCountingServlet</servlet-name>
-		<servlet-class>shoppingcart.VisitCountingServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>FileStoreCounterServlet</display-name>
-		<servlet-name>FileStoreCounterServlet</servlet-name>
-		<servlet-class>shoppingcart.FileStoreCounterServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
 		<display-name>HomeServlet</display-name>
 		<servlet-name>HomeServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.HomeServlet</servlet-class>
@@ -134,27 +106,6 @@
 	<servlet>
 		<description>
 		</description>
-		<display-name>ToDoListServlet</display-name>
-		<servlet-name>ToDoListServlet</servlet-name>
-		<servlet-class>shoppingcart.servlet.ToDoListServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>DataValidationServlet</display-name>
-		<servlet-name>DataValidationServlet</servlet-name>
-		<servlet-class>shoppingcart.servlet.DataValidationServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
-		<display-name>NewJSToDoListServlet</display-name>
-		<servlet-name>NewJSToDoListServlet</servlet-name>
-		<servlet-class>shoppingcart.servlet.NewJSToDoListServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
 		<display-name>CheckOutServlet</display-name>
 		<servlet-name>CheckOutServlet</servlet-name>
 		<servlet-class>shoppingcart.servlet.CheckOutServlet</servlet-class>
@@ -216,23 +167,6 @@
 		<servlet-class>shoppingcart.servlet.PlaceOrderServlet</servlet-class>
 	</servlet>
 	
-	
-	<servlet-mapping>
-		<servlet-name>SetProfileServlet</servlet-name>
-		<url-pattern>/profile</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>VisitCounterServlet</servlet-name>
-		<url-pattern>/counter</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>VisitCountingServlet</servlet-name>
-		<url-pattern>/counting</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>FileStoreCounterServlet</servlet-name>
-		<url-pattern>/times</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>HomeServlet</servlet-name>
 		<url-pattern>/admin/home</url-pattern>
@@ -284,18 +218,6 @@
 	<servlet-mapping>
 		<servlet-name>AddProductServlet</servlet-name>
 		<url-pattern>/admin/product/add-product</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ToDoListServlet</servlet-name>
-		<url-pattern>/todolist</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>DataValidationServlet</servlet-name>
-		<url-pattern>/datavalidation</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>NewJSToDoListServlet</servlet-name>
-		<url-pattern>/newtodolist</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>CheckOutServlet</servlet-name>

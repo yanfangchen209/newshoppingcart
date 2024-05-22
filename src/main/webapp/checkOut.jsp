@@ -7,6 +7,7 @@
 <title>check out</title>
 <link rel="stylesheet" href="css/checkOut.css"/> 
 <script src="/shoppingcart/js/validateCheckOut.js"></script>
+<script src="/shoppingcart/js/placeOrder.js"></script>
 </head>
 <body>
 	<jsp:include page="navMenu.jsp"/>
@@ -37,7 +38,7 @@
 				<input id="zipcode" type="text" name="zipcode" required/>
 				<label for="phone">Phone Number:</label>
 				<input id="phone" type="phone" name="phone" required/>
-				<button class="placeOrderButton">Place Order</button>
+				<button class="placeOrderButton" onclick='placeOrder(this)'>Place Order</button>
 			</form>
 		</div>
 	</div>

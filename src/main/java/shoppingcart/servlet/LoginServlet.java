@@ -56,19 +56,21 @@ public class LoginServlet extends HttpServlet {
 		
 		String enteredUsername = request.getParameter("username");
 		String enteredPassword = request.getParameter("password");
-		boolean rememberMe = request.getParameter("rememberMe") != null;
+		
 		
 		//todo: validate email and password
 		
 		
-
+/*
 		
 		//if "remember me " is checked, create a cookie and add to response
+		boolean rememberMe = request.getParameter("rememberMe") != null;
 		if(rememberMe) {
 			Cookie rememberMECookie = new Cookie("rememberMe", enteredUsername);
 			rememberMECookie.setMaxAge(60*60*24*7);//1 week in seconds
 			response.addCookie(rememberMECookie);
 		}
+*/
 		
 		//get salt and hashedpassword from database according to the username, return null if not found user according to username
 		UserDao userDao = UserDao.getInstance();

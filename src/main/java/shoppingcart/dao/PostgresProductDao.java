@@ -23,7 +23,7 @@ public class PostgresProductDao implements ProductDao{
 
 	@Override
 	public boolean addProduct(Product product) {
-		
+		//try with will handle close of connection, connection.close()(datasource) means going back to datasource connection pool for others request to use, not like direct jdbc close connection
 		try(Connection connection = Database.getConnection(); 
 				PreparedStatement statement = connection.prepareStatement(ADD_PRODUCT, Statement.RETURN_GENERATED_KEYS)
 						){

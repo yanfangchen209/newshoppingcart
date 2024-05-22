@@ -43,16 +43,6 @@ public class ShopServlet extends HttpServlet {
 		List<Product> products = productDao.findALLProducts();
 		request.setAttribute("products", products);
 		
-		//if session doesn't exist, create one
-		HttpSession session = request.getSession(true);
-		
-		ShoppingCart cart = (ShoppingCart)session.getAttribute("shoppingCart");
-		//if key value pair shoppingcart not exist in session, set it
-		if(cart == null) {
-			cart = new ShoppingCart();
-			session.setAttribute("shoppingCart", cart);
-		}
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("shop.jsp");
 		rd.forward(request, response);

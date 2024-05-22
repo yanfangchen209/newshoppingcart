@@ -43,7 +43,7 @@ public class GetProductImagesServlet extends HttpServlet {
             // Check if the file exists and have permission to read
           
                 // Set the content type based on the image file's MIME type
-              //  response.setContentType(getServletContext().getMimeType(imagePath));
+                response.setContentType("image/webp");
                 
             	ImageService imageService = ImageService.getInstance();
             	InputStream inputStream = imageService.getImage(imageName);
