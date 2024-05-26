@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<ul>
+	<ul class="navMenu">
 	    <li><a href="shop">MunchMart</a></li>
 	    <li><a href="shop">Products</a></li>
 		<li style="margin-left: 1000px">

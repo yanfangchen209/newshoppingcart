@@ -14,6 +14,8 @@ import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.ShoppingCartItem;
 import shoppingcart.service.ProductDao;
+import shoppingcart.service.ProductService;
+import shoppingcart.service.ProductServiceFactory;
 import shoppingcart.service.ShoppingCart;
 
 
@@ -32,8 +34,8 @@ public class AddToCartServlet extends HttpServlet {
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
 		//get product details according to id
-		ProductDao productDao = new PostgresProductDao();
-		Product product = productDao.findById(id);
+		ProductService productService = ProductServiceFactory.createProductServiceInstance();
+		Product product = productService.findById(id);
 		
 		//create a shoppingcart item
 		ShoppingCartItem newItem = new ShoppingCartItem(id, product.getProductName(), product.getDescription(), 

@@ -13,7 +13,7 @@ button {
     padding: 10px;
     margin: 5px;
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: #21a5cf;
     color: white;
     border: none;
 }
@@ -44,7 +44,7 @@ input {
 }
 
 .styled-table th {
-    background-color: #4CAF50;
+    background-color: #21a5cf;
     color: white;
 }
 
@@ -63,7 +63,7 @@ input {
 }
 
 .message.success {
-    background-color: #4CAF50;
+    background-color: #21a5cf;
     color: white;
 }
 

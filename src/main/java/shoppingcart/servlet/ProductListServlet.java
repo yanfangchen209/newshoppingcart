@@ -22,11 +22,9 @@ public class ProductListServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ProductDao productDao = new PostgresProductDao();
-		List<Product> allProducts = productDao.findALLProducts();
 		
 		ProductService productService = ProductServiceFactory.createProductServiceInstance();
-		productService.findALLProducts();
+		List<Product> allProducts = productService.findALLProducts();
 		
 		request.setAttribute("allProducts", allProducts);
 //		PrintWriter outPrintWriter = response.getWriter();

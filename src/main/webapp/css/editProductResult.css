@@ -19,7 +19,7 @@ p {
 }
 
 button {
-    background-color: #4caf50; /* Same color as the previous button */
+    background-color: #21a5cf; /* Same color as the previous button */
     color: #fff;
     padding: 10px 15px;
     border: none;
@@ -29,7 +29,7 @@ button {
 }
 
 button:hover {
-    background-color: #45a049; /* Darker shade for hover effect */
+    background-color: #21a5cf; /* Darker shade for hover effect */
 }
 
 a {

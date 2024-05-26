@@ -16,6 +16,8 @@ import shoppingcart.dao.PostgresProductDao;
 import shoppingcart.entity.Product;
 import shoppingcart.entity.ShoppingCartItem;
 import shoppingcart.service.ProductDao;
+import shoppingcart.service.ProductService;
+import shoppingcart.service.ProductServiceFactory;
 import shoppingcart.service.ShoppingCart;
 
 /**
@@ -31,16 +33,20 @@ cart items. Each user's cart would be associated with their user account or sess
  
  */
 public class ShopServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ShoppingCart cart = (ShoppingCart)request.getSession(true).getAttribute("shoppingCart");
+		if(cart == null) {
+			cart = new ShoppingCart();
+		}
 
 		//get all product data from database and set request attribute so that jsp can get it and display /shoppingcart
-		ProductDao productDao = new PostgresProductDao();
-		List<Product> products = productDao.findALLProducts();
+		ProductService productService = ProductServiceFactory.createProductServiceInstance();
+		List<Product> products = productService.findALLProducts();
 		request.setAttribute("products", products);
 		
 		

@@ -64,7 +64,7 @@ h2 {
 }
 
 .submitForm button {
-  background-color: #4CAF50;
+  background-color:#21a5cf;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -74,7 +74,7 @@ h2 {
 }
 
 .submitForm button:hover {
-  background-color: #45a049;
+  background-color: #21a5cf;
 }
 
 /* Disabled button style */
